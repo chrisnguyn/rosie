@@ -17,5 +17,6 @@ public class main {
         build.addEventListener(new featureHelp());
         build.addEventListener(new featureArithmetic());
         build.addEventListener(new featureRNG());
+        build.addEventListener(new featureReminder());
     }
 }
