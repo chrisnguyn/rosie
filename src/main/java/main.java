@@ -3,6 +3,7 @@ import net.dv8tion.jda.core.JDABuilder;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InterruptedIOException;
 
 public class main {
     public static void main(String[] args) throws Exception {
