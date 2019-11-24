@@ -6,7 +6,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 public class featureReminder extends ListenerAdapter {
 
-    // template: !remindme [time] [unit] [stuff], [arg1] [arg2] [arg3] [rest of args]
+    // template: !remindme 10 seconds take out trash
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
