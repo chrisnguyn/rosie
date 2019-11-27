@@ -18,5 +18,6 @@ public class main {
         build.addEventListener(new featureRNG());
         build.addEventListener(new featureReminder());
         build.addEventListener(new featureReddit());
+        build.addEventListener(new featureGoogleSearch());
     }
 }
