@@ -2,16 +2,34 @@
 Rosie is a personal assistant Discord bot that aims to improve quality of life and help reduce the number of trivialities and menial tasks one faces in their day-to-day life.
 
 # Features
-- Arithmetic: able to perform basic calculations (i.e. **!compute 1120 * 2019**)
 
-- RNG: able to print out results of randomized actions (i.e. **!rolldice, !coinflip**)
+## HELP
++ Ping! - tests to see if Rosie is up and running. Responds with "Pong!" if so.
++ !rosiecommands - responds with all functionality and how to use each command.
 
-- Reminders: can set reminders and be notified through direct message accordingly (i.e. **!setreminder 20min take pizza out of the oven**)
+## ARITHMETIC
++ !compute [number1] [+, -, *, /, %] [number2] - computes basic math.
 
-- Reddit: able to pull current top 5 hottest posts of a given subreddit (i.e. **!reddit memes**)
+## RNG RESPONSE
++ !coinflip - responds with HEADS or TAILS.
++ !dice - responds with a random dice roll from 0-6.
++ !card - responds with a random card.
++ !numberbetween [number1] [number2] - responds with a random number between these two values (inclusive).
 
-- Google Calendar: able to view and add events to personal Google Calendar (i.e. **!calendaradd Wednesday November 20 11:00-13:00 geography lecture**)
+## REMINDERS
++ !remindme [number] [unit] [reminder ...] - sets reminders and direct messages you accordingly. [unit] can be s, seconds, m, minutes, h, or hours.
 
-- Google Search: able to perform searches (i.e. **!search apples; bot replies with the first link as if you were to search 'apples'**)
+## REDDIT
++ !reddit [name of subreddit] - responds with the top 5 current hottest posts of a subreddit.  
 
-- To do list: able to queue and remove items to and from a to do list (i.e. **!todo data structures assignment; !todo work on Rosie bot; !displaytodo**)
+## GOOGLE CALENDAR (not yet implemented)
++ !calendarview [date] - responds with all events on given date
++ !calendaradd [date] [event] - adds an event to your Google Calendar
+
+## GOOGLE SEARCH (not yet implemented)
++ !search [anything] - responds with the first link to come up in Google
+
+## TO DO LIST (not yet implemented)
++ !todoadd [event] - adds an event to your list
++ !todocheck [event] - checks off an event on your list
++ !todoview - responds with your to do list and what has / hasn't been completed
