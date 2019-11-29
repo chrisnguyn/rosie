@@ -22,12 +22,12 @@ Rosie is a personal assistant Discord bot that aims to improve quality of life a
 ## REDDIT
 + !reddit [name of subreddit] - responds with the top 5 current hottest posts of a subreddit.  
 
+## GOOGLE SEARCH
++ !search [anything] - responds with the top 3 links to come up in Google  
+
 ## GOOGLE CALENDAR (not yet implemented)
 + !calendarview [date] - responds with all events on given date
 + !calendaradd [date] [event] - adds an event to your Google Calendar
-
-## GOOGLE SEARCH (not yet implemented)
-+ !search [anything] - responds with the first link to come up in Google
 
 ## TO DO LIST (not yet implemented)
 + !todoadd [event] - adds an event to your list
