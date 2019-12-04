@@ -5,12 +5,12 @@ import java.util.Random;
 public class featureRNG extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        // template: !coinflip !rolldice !card !random [num1] [num2]
+        // template: !coin, !dice, !card, !numberbetween [num1] [num2]
 
         Random ran = new Random();
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
 
-        if (messageSent[0].equalsIgnoreCase("!coinflip")) {
+        if (messageSent[0].equalsIgnoreCase("!coin")) {
             int rand = ran.nextInt(2); // 0 or 1.
 
             String headsOrTails = (rand == 0 ? "HEADS" : "TAILS");
@@ -62,8 +62,6 @@ public class featureRNG extends ListenerAdapter {
 
         if (messageSent[0].equalsIgnoreCase("!numberbetween")) {
 
-            // template: !numberbetween 10 20
-
             if (Integer.parseInt(messageSent[1]) > Integer.parseInt(messageSent[2])) {
                 event.getChannel().sendMessage("Hey! Your lower bound can't be less than or equal to your upper bound! :angry:").queue();
             }
@@ -71,7 +69,7 @@ public class featureRNG extends ListenerAdapter {
             else {
                 int max = Integer.parseInt(messageSent[2]);
                 int min = Integer.parseInt(messageSent[1]);
-                int result = ran.nextInt((max - min) + 1) + min;
+                int result = ran.nextInt((max - min) + 1) + min; // algorithm
 
                 event.getChannel().sendMessage("Result: " + result).queue();
             }

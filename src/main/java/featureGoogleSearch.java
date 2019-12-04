@@ -9,7 +9,7 @@ import org.json.*;
 
 public class featureGoogleSearch extends ListenerAdapter {
 
-    // !googlesearch [query], return top 3 links in google
+    // template: !googlesearch [query], return top 3 links in google
     // GET https://www.googleapis.com/customsearch/v1?q=[QUERY_HERE]&cx=[SEARCH_ENGINE_ID_HERE]&num=3&key=[API_KEY_HERE]
 
     public static String[] getGoogleCredentials() throws Exception {
@@ -37,7 +37,8 @@ public class featureGoogleSearch extends ListenerAdapter {
 
             try {
                 MyGETRequest(event, query);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 System.err.println(e);
             }
         }
@@ -61,7 +62,7 @@ public class featureGoogleSearch extends ListenerAdapter {
 
             System.out.println(response); // testing purposes.
 
-            // Parsing JSON object
+            // Parsing my JSON object
             JSONObject obj = new JSONObject(response.toString());
             if (obj.has("items")) {
                 JSONArray arr = obj.getJSONArray("items");
@@ -69,7 +70,7 @@ public class featureGoogleSearch extends ListenerAdapter {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj2 = (JSONObject) arr.get(i);
 
-                    event.getChannel().sendMessage("`" + (String) obj2.get("link") + "`").queue();
+                    event.getChannel().sendMessage((String) obj2.get("link")).queue(); // `` formatting the link to not have the preview appear
                 }
             }
             else {
@@ -87,9 +88,7 @@ public class featureGoogleSearch extends ListenerAdapter {
     String pageName = obj.getJSONObject("pageInfo").getString("pageName");
 
     JSONArray arr = obj.getJSONArray("posts");
-for (int i = 0; i < arr.length(); i++)
-        {
+    for (int i = 0; i < arr.length(); i++) {
         String post_id = arr.getJSONObject(i).getString("post_id");
-        ......
-        }
+    }
 */

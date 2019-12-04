@@ -6,7 +6,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 public class featureReminder extends ListenerAdapter {
 
-    // template: !remindme 10 seconds take out trash
+    // template: !remindme 20 minutes take pizza out of the oven
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
@@ -37,7 +37,7 @@ public class featureReminder extends ListenerAdapter {
 
     public void remind(User user, String reminder, long delay, TimeUnit unit) {
         user.openPrivateChannel().queue (
-                (channel) -> channel.sendMessage(reminder).queueAfter(delay, unit)
+                (channel) -> channel.sendMessage(reminder).queueAfter(delay, unit) // Java language 12; supports Lambda expressions
         );
     }
 }

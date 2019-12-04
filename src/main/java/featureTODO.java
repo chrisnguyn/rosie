@@ -3,7 +3,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class featureTODO extends ListenerAdapter {
 
-    /* !todoadd !todoview !todoremove [id] */
+    /* template: !todoadd, !todoview, !todocomplete [id], !todoremove [id] */
     /* todoList(id, entry, timeAdded, isCompleted)*/
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {

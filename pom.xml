@@ -30,7 +30,7 @@
             <version>v1-rev74-1.25.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <!-- JSON; https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -45,5 +45,4 @@
             <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
-
 </project>

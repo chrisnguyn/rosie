@@ -12,6 +12,10 @@ import java.io.FileReader;
 import java.util.List;
 
 public class featureReddit extends ListenerAdapter {
+
+    // template: !reddit memes, !reddit worldnews
+    // my bot login information is set at build time, when main calls my constructor
+
     Credentials oauthCreds;
     UserAgent userAgent;
     RedditClient redditClient;
