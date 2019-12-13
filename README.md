@@ -25,10 +25,6 @@ Rosie is a personal assistant Discord bot that aims to improve quality of life a
 ## GOOGLE SEARCH
 + !search [anything] - responds with the top 3 links to come up in Google  
 
-## GOOGLE CALENDAR (not yet implemented)
-+ !calendarview [date] - responds with all events on given date
-+ !calendaradd [date] [event] - adds an event to your Google Calendar
-
 ## TO DO LIST (not yet implemented)
 + !todoadd [event] - adds an event to your list
 + !todocheck [event] - checks off an event on your list
