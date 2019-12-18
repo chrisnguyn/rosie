@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 public class featureTODO extends ListenerAdapter {
 
     /* template: !todoadd, !todoview, !todocomplete [id], !todoremove [id] */
-    /* todoList(id, entry, timeAdded, isCompleted)*/
+    /* todoList(user_id, entry, timeAdded, isCompleted)*/
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
@@ -12,9 +12,11 @@ public class featureTODO extends ListenerAdapter {
         if (messageSent[0].equalsIgnoreCase("!todoadd")) {
 
         }
+
         else if (messageSent[0].equalsIgnoreCase("!todoview")) {
 
         }
+
         else if (messageSent[0].equalsIgnoreCase("todoremove")) {
 
         }
