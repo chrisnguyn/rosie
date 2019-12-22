@@ -38,6 +38,11 @@ public class featureReminder extends ListenerAdapter {
     public void remind(User user, String reminder, long delay, TimeUnit unit) {
         user.openPrivateChannel().queue (
                 (channel) -> channel.sendMessage(reminder).queueAfter(delay, unit) // Java language 12; supports Lambda expressions
+
+                /*
+                    File -> Settings -> Project bytecode version: 8, and delete all per-module bytecode versions
+                    File -> Project Structure -> Language level 8
+                */
         );
     }
 }
