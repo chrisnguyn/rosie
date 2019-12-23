@@ -37,7 +37,7 @@
             <version>20190722</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java BECAUSE SCREW YOU JAR FILES! -->
+        <!-- JDBC: https://mvnrepository.com/artifact/mysql/mysql-connector-java (because I don't want to download a .jar file) -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

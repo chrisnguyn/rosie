@@ -13,14 +13,13 @@ import java.util.List;
 
 public class featureReddit extends ListenerAdapter {
 
-    // template: !reddit memes, !reddit worldnews
-    // my bot login information is set at build time, when main calls my constructor
+    // How to call: !reddit [EXACT name of subreddit]
 
     Credentials oauthCreds;
     UserAgent userAgent;
     RedditClient redditClient;
 
-    public featureReddit() throws Exception {
+    public featureReddit() throws Exception { // when bot is built in main.java, it will call this constructor and create Reddit bot
         String credentials[] = this.getRedditCredentials();
         this.oauthCreds = Credentials.script(credentials[0], credentials[1], credentials[2], credentials[3]);
         this.userAgent = new UserAgent("bot", "Rosie", "1.0.0", "hemp3n");
@@ -36,12 +35,9 @@ public class featureReddit extends ListenerAdapter {
         String clientId = bufferedReader.readLine();
         String clientSecret = bufferedReader.readLine();
         bufferedReader.close();
-
         String credentials[] = {username, password, clientId, clientSecret};
         return credentials;
     }
-
-    // getting reddit posts
 
     public List<Submission> getRedditPosts(String subredditName) {
         DefaultPaginator<Submission> paginator = redditClient.subreddit(subredditName).posts()
@@ -49,7 +45,6 @@ public class featureReddit extends ListenerAdapter {
                 .sorting(SubredditSort.HOT)
                 .timePeriod(TimePeriod.DAY)
                 .build();
-
         Listing<Submission> topMostPopular = paginator.next();
         return topMostPopular.getChildren();
     }
@@ -62,7 +57,7 @@ public class featureReddit extends ListenerAdapter {
 
             for (Submission x : posts) {
                 String returnedPosts = "";
-                returnedPosts += x.getTitle() + "\n" + "http://reddit.com" + x.getPermalink() + "\n";
+                returnedPosts += x.getTitle() + "\n" + "http://reddit.com" + x.getPermalink() + "\n"; // build the string so that it displayed as hyperlink in Discord
                 event.getChannel().sendMessage(returnedPosts).queue();
             }
         }
@@ -70,6 +65,7 @@ public class featureReddit extends ListenerAdapter {
 }
 
 /*
+Functions from JRAW documentation:
 getTitle - title of post
 getPermalink - link to the post. Need to append it to "htttp://reddit.com" first if you want it to appear as a hyperlink in Discord
 getSelfText - the self text in the post, if it exists. Otherwise null. Can use "isSelfPost" to see if it's a text only post

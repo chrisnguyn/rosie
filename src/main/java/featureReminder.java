@@ -6,7 +6,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 public class featureReminder extends ListenerAdapter {
 
-    // template: !remindme 20 minutes take pizza out of the oven
+    // How to call: !remindme [number] [time unit] [query]
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
@@ -14,7 +14,7 @@ public class featureReminder extends ListenerAdapter {
 
         if (messageSent[0].equalsIgnoreCase("!remindme")) {
 
-            for (int i = 3; i < messageSent.length; i++) {
+            for (int i = 3; i < messageSent.length; i++) { // 0 is command call, 1 is number, 2 is unit
                 reminder += messageSent[i] + " ";
             }
 
@@ -35,18 +35,17 @@ public class featureReminder extends ListenerAdapter {
         }
     }
 
-    public void remind(User user, String reminder, long delay, TimeUnit unit) {
+    public void remind(User user, String reminder, long delay, TimeUnit unit) { // helper method
+        // IF NOT WORKING, IT'S MOST LIKELY BECAUSE THE PROJECT LANGUAGE YOU HAVE SET DOES NOT SUPPORT LAMBDA EXPRESSIONS.
+        // Fix 1. File -> Settings -> Project bytecode version: 8, and delete all per-module bytecode versions
+        // Fix 2. File -> Project Structure -> Language level 8
         user.openPrivateChannel().queue (
-                (channel) -> channel.sendMessage(reminder).queueAfter(delay, unit) // Java language 12; supports Lambda expressions
-
-                /*
-                    File -> Settings -> Project bytecode version: 8, and delete all per-module bytecode versions
-                    File -> Project Structure -> Language level 8
-                */
+                (channel) -> channel.sendMessage(reminder).queueAfter(delay, unit)
         );
     }
 }
 
+//    Documentation example code:
 //    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 //        String[] messageSent = event.getMessage().getContentRaw().split(" ");
 //

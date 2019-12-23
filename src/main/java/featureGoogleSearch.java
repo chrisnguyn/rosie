@@ -9,8 +9,8 @@ import org.json.*;
 
 public class featureGoogleSearch extends ListenerAdapter {
 
-    // template: !googlesearch [query], return top 3 links in google
-    // GET https://www.googleapis.com/customsearch/v1?q=[QUERY_HERE]&cx=[SEARCH_ENGINE_ID_HERE]&num=3&key=[API_KEY_HERE]
+    // How to call: !googlesearch [query]
+    // https://www.googleapis.com/customsearch/v1?q=[QUERY_HERE]&cx=[SEARCH_ENGINE_ID_HERE]&num=3&key=[API_KEY_HERE]
 
     public static String[] getGoogleCredentials() throws Exception {
         String fileName = "googleCredentials.txt";
@@ -19,7 +19,6 @@ public class featureGoogleSearch extends ListenerAdapter {
         String searchEngineID = bufferedReader.readLine();
         String APIKey = bufferedReader.readLine();
         bufferedReader.close();
-
         String credentials[] = {searchEngineID, APIKey};
         return credentials;
     }
@@ -29,7 +28,7 @@ public class featureGoogleSearch extends ListenerAdapter {
 
         if (messageSent[0].equalsIgnoreCase("!googlesearch")) {
 
-            String query = messageSent[1];
+            String query = messageSent[1]; // user query
 
             for (int i = 2; i < messageSent.length; i++) {
                 query += "+" + messageSent[i];
@@ -46,7 +45,7 @@ public class featureGoogleSearch extends ListenerAdapter {
 
     public static void MyGETRequest(GuildMessageReceivedEvent event, String query) throws Exception {
 
-        // My search URL. Query is the custom word we feed it, limit 3 "num=3"
+        // my search URL, query is the custom string we feed it, limit 3 "num=3"
         URL urlForGetRequest = new URL("https://www.googleapis.com/customsearch/v1?q=" + query + "&cx=" + getGoogleCredentials()[0] + "&num=3&key=" + getGoogleCredentials()[1]);
         String readLine;
         HttpURLConnection connection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -60,17 +59,16 @@ public class featureGoogleSearch extends ListenerAdapter {
             }
             in.close();
 
-            System.out.println(response); // testing purposes.
+            System.out.println(response); // testing purposes
 
-            // Parsing my JSON object
+            // parsing my JSON object
             JSONObject obj = new JSONObject(response.toString());
             if (obj.has("items")) {
                 JSONArray arr = obj.getJSONArray("items");
 
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj2 = (JSONObject) arr.get(i);
-
-                    event.getChannel().sendMessage((String) obj2.get("link")).queue(); // `` formatting the link to not have the preview appear
+                    event.getChannel().sendMessage((String) obj2.get("link")).queue();
                 }
             }
             else {

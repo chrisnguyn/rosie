@@ -5,7 +5,7 @@ import java.util.Random;
 public class featureRNG extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        // template: !coin, !dice, !card, !numberbetween [num1] [num2]
+        // How to call: !coin, !dice, !card, !numberbetween [num1] [num2]
 
         Random ran = new Random();
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
@@ -43,7 +43,6 @@ public class featureRNG extends ListenerAdapter {
             else if (rand == 14) {
                 result += "Ace of ";
             }
-
             if (rand2 == 0) { // Clubs
                 result += "Clubs";
             }
@@ -63,14 +62,13 @@ public class featureRNG extends ListenerAdapter {
         if (messageSent[0].equalsIgnoreCase("!numberbetween")) {
 
             if (Integer.parseInt(messageSent[1]) > Integer.parseInt(messageSent[2])) {
-                event.getChannel().sendMessage("Hey! Your lower bound can't be less than or equal to your upper bound! :angry:").queue();
+                event.getChannel().sendMessage("Your lower bound can't be less than or equal to your upper bound! :angry:").queue();
             }
 
             else {
                 int max = Integer.parseInt(messageSent[2]);
                 int min = Integer.parseInt(messageSent[1]);
-                int result = ran.nextInt((max - min) + 1) + min; // algorithm
-
+                int result = ran.nextInt((max - min) + 1) + min; // algorithm to find numbers inclusive
                 event.getChannel().sendMessage("Result: " + result).queue();
             }
 

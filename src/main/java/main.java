@@ -6,6 +6,7 @@ import java.io.FileReader;
 public class main {
     public static void main(String[] args) throws Exception {
 
+        // read Discord bot token from file and build
         String fileName = "discordToken.txt";
         FileReader fileReader = new FileReader(fileName);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
