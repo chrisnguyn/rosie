@@ -1,15 +1,12 @@
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -36,54 +33,26 @@ public class featureTODO extends ListenerAdapter {
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        Date date = new Date(); // Sun Dec 22 18:53:32 EST 2019
+        Date date = new Date(); // Sun Dec 22 18:53:32 EST 2019, footer
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); // 22/12/2019 19:21:42, how when_added is formatted
+
+        // possible optimization? only works if someone puts TWO words minimum though, or "command" doesn't catch the first word (because no space)
+        // int x = userMessage.indexOf(' ');
+        // String command = userMessage.substring(0, x);
+        // String remainder = userMessage.substring(x);
 
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
-//        int x = userMessage.indexOf(' ');
-//        String command = userMessage.substring(0, x);
-//        String remainder = userMessage.substring(x);
         long user_id = event.getAuthor().getIdLong();
 
-//        if (messageSent[0].equalsIgnoreCase("testing")) {
-//            EmbedBuilder eb = new EmbedBuilder();
-//            eb.setTitle(event.getAuthor().getName() + "'s to do list");
-//            eb.addField("Name", "Chris", true);
-//            eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png");
-//            eb.setColor(9168790); // or Color.[w/e], or www.shodor.org/stella2java/rgbint.html
-//            eb.setFooter("Request was made at: " + date, null);
-//            event.getChannel().sendMessage(eb.build()).queue();
-//        }
-
-
-//        String input = "hello world, this is a line of text";
-//        int i = input.indexOf(' ');
-//        String word = input.substring(0, i);
-//        String rest = input.substring(i);
-
-//        String[] messageSent = event.getMessage().getContentRaw().split(" "); // optimize this one later i guess
-
-        // !todoadd take out the trash
-
-//        String mystring = "the quick brown fox";
-//        String arr[] = mystring.split(" ", 2);
-//        String firstWord = arr[0];                the
-//        String theRest = arr[1];                  quick brown fox
-
-        if (messageSent[0].equalsIgnoreCase("!eggs")) {
-            event.getChannel().sendMessage("works").queue();
-        }
-
         if (messageSent[0].equalsIgnoreCase("!todoadd")) { // !todoadd take out the trash
-            String query = "";
+
+            Connection connection = createDBConnection();
+            String query = String.format("");
         }
 
         else if (messageSent[0].equalsIgnoreCase("!todoview")) {
 
-            // THIS WORKS, ADDING THE OTHER SHIT DOES NOT
-
             Connection connection = createDBConnection();
-
-            String result = "";
             String query = String.format("SELECT featuretodo.user_query, featuretodo.when_added, featuretodo.is_completed FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", user_id);
 
             try {
@@ -96,7 +65,6 @@ public class featureTODO extends ListenerAdapter {
                 String completed = "";
 
                 while (rs.next()) {
-//                    result += rs.getString("featuretodo.user_query") + "\n";
                     entries += rs.getString("featuretodo.user_query") + "\n";
                     added += rs.getString("featuretodo.when_added") + "\n";
                     completed += rs.getString("featuretodo.is_completed") + "\n";
@@ -109,7 +77,7 @@ public class featureTODO extends ListenerAdapter {
                 eb.addField("Completed", completed, true);
                 eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png");
                 eb.setColor(9168790); // or Color.[w/e], or www.shodor.org/stella2java/rgbint.html
-                eb.setFooter("Request was made at: " + date, null);
+                eb.setFooter("Request was made at: " + formatter.format(date), null); // date, format.format(date);
                 event.getChannel().sendMessage(eb.build()).queue();
 
             } catch (Exception e) {
@@ -122,24 +90,15 @@ public class featureTODO extends ListenerAdapter {
         }
 
         else if (messageSent[0].equalsIgnoreCase("!todocompleted")) { // !todocompleted take out the trash
-
+            Connection connection = createDBConnection();
+            String query = String.format("");
         }
 
         else if (messageSent[0].equalsIgnoreCase("todoremove")) { // !todoremove take out the trash
-
+            Connection connection = createDBConnection();
+            String query = String.format("");
         }
     }
-
-//    Connection createDBConnection() {
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rosie", "", "");
-//            return conn;
-//        } catch (Exception e) {
-//            System.out.println("Connection failed!");
-//        }
-//        return null;
-//    }
 
     Connection createDBConnection(){
         try {
