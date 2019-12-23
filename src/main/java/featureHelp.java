@@ -7,7 +7,10 @@ public class featureHelp extends ListenerAdapter{
         // template: Ping!, !rosiecommands
 
         if (event.getMessage().getContentRaw().equalsIgnoreCase("Ping!")) {
-            event.getChannel().sendMessage("Pong!").queue(); // test if bot is up and running
+            // when working with threads, .queue runs the line when next available.
+            // if multiple threads are running (multiple users using at once) it queues them accordingly
+            // .complete blocks all other threads and makes that line priority
+            event.getChannel().sendMessage("Pong!").queue(); // test if bot is up and running. Queue > Complete; queue runs when available when multiple threads
         }
 
         if (event.getMessage().getContentRaw().equalsIgnoreCase("!rosiecommands")) {
@@ -18,7 +21,8 @@ public class featureHelp extends ListenerAdapter{
                     "**FEATURES LIST**\n" +
                     "\n" +
                     "**HELP**\n" +
-                    "> Ping! - tests to see if I am up and running. I should respond with, \\\"Pong!\\\" if so!\n" +
+                    "> Ping! - tests to see if I am up and running. I should respond with, \"Pong!\" if so!\n" +
+                    "> !invitation - replies with an invitation link to the server, which expires in 10 minutes.\n" +
                     "> !rosiecommands - if you want to know about me and all the things I can do, type this command.\n" +
                     "\n" +
                     "**ARITHMETIC**\n" +
@@ -44,6 +48,11 @@ public class featureHelp extends ListenerAdapter{
                     "> !todoview [query] - view your current list of items\n" +
                     "> !todocomplete [query] - check an item on your list as complete (does not remove it)\n" +
                     "> !todoremove [query] - remove an item on your list").queue();
+        }
+
+        if (event.getMessage().getContentRaw().equalsIgnoreCase("!invitation")) { // create invite ling. sexMaxAge in seconds
+            event.getChannel().sendMessage("This link will expire in 10 minutes: " +
+                    event.getChannel().createInvite().setMaxAge(600).complete().getURL()).queue();
         }
     }
 }
