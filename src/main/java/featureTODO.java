@@ -84,7 +84,7 @@ public class featureTODO extends ListenerAdapter {
             Connection connection = createDBConnection();
 
             String result = "";
-            String query = String.format("SELECT featuretodo.user_query FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", user_id);
+            String query = String.format("SELECT featuretodo.user_query, featuretodo.when_added, featuretodo.is_completed FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", user_id);
 
             try {
 
@@ -96,21 +96,21 @@ public class featureTODO extends ListenerAdapter {
                 String completed = "";
 
                 while (rs.next()) {
-                    result += rs.getString("featuretodo.user_query") + "\n";
-//                    entries += rs.getString("featuretodo.user_query") + "\n";
-//                    added += rs.getString("featuretodo.when_added") + "\n";
-//                    completed += rs.getString("featuretodo.is_completed") + "\n";
+//                    result += rs.getString("featuretodo.user_query") + "\n";
+                    entries += rs.getString("featuretodo.user_query") + "\n";
+                    added += rs.getString("featuretodo.when_added") + "\n";
+                    completed += rs.getString("featuretodo.is_completed") + "\n";
                 }
 
-//                EmbedBuilder eb = new EmbedBuilder();
-//                eb.setTitle(event.getAuthor().getName() + "'s to do list:");
-//                eb.addField("Entry", "entries", true);
-//                eb.addField("When", "added", true);
-//                eb.addField("Completed", "completed", true);
-//                eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png");
-//                eb.setColor(9168790); // or Color.[w/e], or www.shodor.org/stella2java/rgbint.html
-//                eb.setFooter("Request was made at: " + date, null);
-//                event.getChannel().sendMessage(eb.build()).queue();
+                EmbedBuilder eb = new EmbedBuilder();
+                eb.setTitle(event.getAuthor().getName() + "'s to do list:");
+                eb.addField("Entry", entries, true);
+                eb.addField("When", added, true);
+                eb.addField("Completed", completed, true);
+                eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png");
+                eb.setColor(9168790); // or Color.[w/e], or www.shodor.org/stella2java/rgbint.html
+                eb.setFooter("Request was made at: " + date, null);
+                event.getChannel().sendMessage(eb.build()).queue();
 
             } catch (Exception e) {
                 System.out.println("Error executing query!");
@@ -118,7 +118,7 @@ public class featureTODO extends ListenerAdapter {
 
             event.getChannel().sendMessage("i got here").queue();
 
-            event.getChannel().sendMessage(result).queue();
+//            event.getChannel().sendMessage(result).queue();
         }
 
         else if (messageSent[0].equalsIgnoreCase("!todocompleted")) { // !todocompleted take out the trash
