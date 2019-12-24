@@ -11,7 +11,7 @@ public class featureHelp extends ListenerAdapter{
             event.getChannel().sendMessage("Pong!").queue(); // .complete() blocks all other threads and makes that line priority
         }
 
-        if (event.getMessage().getContentRaw().equalsIgnoreCase("!rosie")) {
+        if (event.getMessage().getContentRaw().equalsIgnoreCase("!helpme")) {
             event.getChannel().sendMessage("Hello and thank you for using me!\n" +
                     "\n" +
                     "I am a personal assistant Discord Bot that aims to improve quality of life and reduce number of trivialities one faces in their everyday life.\n" +
@@ -20,8 +20,9 @@ public class featureHelp extends ListenerAdapter{
                     "\n" +
                     "**HELP**\n" +
                     "> Ping! - tests to see if I am up and running. I should respond with, \"Pong!\" if so!\n" +
-                    "> !invitation - replies with an invitation link to the server, which expires in 10 minutes.\n" +
-                    "> !rosie - if you want to know about me and all the things I can do, type this command.\n" +
+                    "> !serverinvite - replies with an invitation link to the server, which expires in 10 minutes.\n" +
+                    "> !rosieinvite - replies with an invitation link to add Rosie to more servers.\n" +
+                    "> !helpme - if you want to know about me and all the things I can do, type this command.\n" +
                     "\n" +
                     "**ARITHMETIC**\n" +
                     "> !calculate [number1] [+, -, *, /, %] [number2] - can compute basic math.\n" +
@@ -48,8 +49,12 @@ public class featureHelp extends ListenerAdapter{
                     "> !todoremove [query] - remove an item on your list").queue();
         }
 
-        if (event.getMessage().getContentRaw().equalsIgnoreCase("!invitation")) { // create invite link. setMaxAge takes arguments in seconds
+        if (event.getMessage().getContentRaw().equalsIgnoreCase("!serverinvite")) { // create invite link. setMaxAge takes arguments in seconds
             event.getChannel().sendMessage("This link will expire in 10 minutes: " + event.getChannel().createInvite().setMaxAge(600).complete().getURL()).queue();
+        }
+
+        if (event.getMessage().getContentRaw().equalsIgnoreCase("!rosieinvite")) {
+            event.getChannel().sendMessage("Link to invite Rosie to more servers: https://discordapp.com/api/oauth2/authorize?client_id=646757636221435924&permissions=0&scope=bot").queue();
         }
     }
 }
