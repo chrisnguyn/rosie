@@ -1,12 +1,13 @@
 # Rosie
 Rosie is a personal assistant Discord bot that aims to improve quality of life and help reduce the number of trivialities and menial tasks one faces in their day-to-day life.
 
-# Features List as of 12/23/2019
+# Features List as of 12/24/2019
 
 ## HELP
 + Ping! - tests to see if Rosie is up and running. Responds with "Pong!" if so.
 + !rosie - responds with all functionality and how to use each command.
-+ !invitation - generates an invitation link to the server that expires in 10 minutes.
++ !serverinvite - generates an invitation link to the server that expires in 10 minutes.
++ !rosieinvite - generates a link to invite Rosie to more Discord servers.
 
 ## ARITHMETIC
 + !compute [number1] [+, -, *, /, %] [number2] - computes basic math.
