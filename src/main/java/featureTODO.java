@@ -89,7 +89,7 @@ public class featureTODO extends ListenerAdapter {
                 eb.addField("Your Entries", entries, true);
                 eb.addField("Added When", added, true);
                 eb.addField("Is Completed", completed, true);
-                eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png");
+                eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png"); // hehe
                 eb.setColor(9168790); // or Color.(anything), or www.shodor.org/stella2java/rgbint.html
                 eb.setFooter("Request was made at: " + date, null); // date or formatter.format(date);
                 event.getChannel().sendMessage(eb.build()).queue();
