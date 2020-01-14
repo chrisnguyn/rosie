@@ -7,7 +7,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class featureTODO extends ListenerAdapter {
+public class FeatureTODO extends ListenerAdapter {
 
     // How to call: !todoadd [query], !todoview, !todocomplete [existing entry], !todoremove [existing entry]
 
@@ -16,7 +16,7 @@ public class featureTODO extends ListenerAdapter {
     String password = "";
     Connection connection;
 
-    public featureTODO() throws Exception {
+    public FeatureTODO() throws Exception {
         String fileName = "SQLconnector.txt";
         FileReader fileReader = new FileReader(fileName);
         BufferedReader bufferedReader = new BufferedReader((fileReader));

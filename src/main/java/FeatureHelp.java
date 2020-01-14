@@ -1,10 +1,10 @@
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-public class featureHelp extends ListenerAdapter{
+public class FeatureHelp extends ListenerAdapter{
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        // How to call: Ping!, !rosie, !invitation
+        // How to call: Ping!, !helpme, !serverinvite, !rosieinvite
 
         if (event.getMessage().getContentRaw().equalsIgnoreCase("Ping!")) {
             // .queue() runs the line when next available, since multiple users are using it at once, it will queue them accordingly.
@@ -26,6 +26,9 @@ public class featureHelp extends ListenerAdapter{
                     "\n" +
                     "**ARITHMETIC**\n" +
                     "> !calculate [number1] [+, -, *, /, %] [number2] - can compute basic math.\n" +
+                    "> !calculate [sin, cos, tan] [number] - compute trigonometric values.\n" +
+                    "> !quadratic [a value] [b value] [c value] - compute the quadratic formula.\n" +
+                    "> !pythagorean [side length 1] [side length 2] - compute the hypotenuse of a triangle given two side lengths.\n" +
                     "\n" +
                     "**RNG RESPONSE**\n" +
                     "> !coin - responds with HEADS or TAILS.\n" +

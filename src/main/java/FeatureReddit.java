@@ -11,7 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.List;
 
-public class featureReddit extends ListenerAdapter {
+public class FeatureReddit extends ListenerAdapter {
 
     // How to call: !reddit [EXACT name of subreddit]
 
@@ -19,7 +19,7 @@ public class featureReddit extends ListenerAdapter {
     UserAgent userAgent;
     RedditClient redditClient;
 
-    public featureReddit() throws Exception { // when bot is built in main.java, it will call this constructor and create Reddit bot
+    public FeatureReddit() throws Exception { // when bot is built in main.java, it will call this constructor and create Reddit bot
         String credentials[] = this.getRedditCredentials();
         this.oauthCreds = Credentials.script(credentials[0], credentials[1], credentials[2], credentials[3]);
         this.userAgent = new UserAgent("bot", "Rosie", "1.0.0", "hemp3n");

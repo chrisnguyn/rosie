@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import org.json.*;
 
-public class featureGoogleSearch extends ListenerAdapter {
+public class FeatureGoogleSearch extends ListenerAdapter {
 
     // How to call: !googlesearch [query]
     // https://www.googleapis.com/customsearch/v1?q=[QUERY_HERE]&cx=[SEARCH_ENGINE_ID_HERE]&num=3&key=[API_KEY_HERE]

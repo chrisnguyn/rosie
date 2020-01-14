@@ -2,10 +2,10 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import java.util.Random;
 
-public class featureRNG extends ListenerAdapter {
+public class FeatureRNG extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
 
-        // How to call: !coin, !dice, !card, !numberbetween [num1] [num2]
+        // How to call: !coin, !dice, !card, !numberbetween [num1] [num2], !choose opt1 | opt2 - NOT YET IMPLEMENTED
 
         Random ran = new Random();
         String[] messageSent = event.getMessage().getContentRaw().split(" ");
@@ -22,6 +22,12 @@ public class featureRNG extends ListenerAdapter {
 
             event.getChannel().sendMessage("Result: " + rand).queue();
         }
+
+        if (messageSent[0].equalsIgnoreCase("!choose")) {
+            // Given two choices such as "!choose [arg1] | [arg2]" - generate one of the two choices.
+        }
+
+        /* oh god penniless when you get to the code below...plz dont hate me i'm sure there's a better way i just don't know how lol */
 
         if (messageSent[0].equalsIgnoreCase("!card")) { // 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A, Clubs, Spades, Diamonds, Hearts
             int rand = ran.nextInt(13) + 2; // 0-12, 2-14

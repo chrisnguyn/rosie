@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.*;
 
-public class featureReminder extends ListenerAdapter {
+public class FeatureReminder extends ListenerAdapter {
 
     // How to call: !remindme [number] [time unit] [query]
 
