@@ -39,7 +39,7 @@ public class FeatureReddit extends ListenerAdapter {
         return credentials;
     }
 
-    public List<Submission> getRedditPosts(String subredditName) {
+    public List<Submission> getRedditPosts(String subredditName) { // https://mattbdean.gitbooks.io/jraw/pagination.html
         DefaultPaginator<Submission> paginator = redditClient.subreddit(subredditName).posts()
                 .limit(3)
                 .sorting(SubredditSort.HOT)
