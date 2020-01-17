@@ -7,6 +7,7 @@ public abstract class Commands {
 
     public Commands(String name) {
         this.name = name;
+        System.out.println("Called command constructor.");
     }
 
     public abstract void execute(MessageReceivedEvent event, String[] args);
