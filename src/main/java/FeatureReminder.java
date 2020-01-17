@@ -39,6 +39,7 @@ public class FeatureReminder extends ListenerAdapter {
         // IF NOT WORKING, IT'S MOST LIKELY BECAUSE THE PROJECT LANGUAGE YOU HAVE SET DOES NOT SUPPORT LAMBDA EXPRESSIONS.
         // Fix 1. File -> Settings -> Project bytecode version: 8, and delete all per-module bytecode versions
         // Fix 2. File -> Project Structure -> Language level 8
+        // Fix 3. IntelliJ IDEA -> Preferences -> change project bytecode from 1.5 to 1.8
         user.openPrivateChannel().queue (
                 (channel) -> channel.sendMessage(reminder).queueAfter(delay, unit)
         );
