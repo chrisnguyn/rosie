@@ -11,6 +11,7 @@ public class Ping extends Commands {
     }
 
     public void execute(MessageReceivedEvent event, String[] args) {
-        event.getChannel().sendMessage("Called ping execute.");
+//        event.getChannel().sendMessage("Called ping execute.");
+        System.out.println("IS THIS FINALLY CORRECT");
     }
 }

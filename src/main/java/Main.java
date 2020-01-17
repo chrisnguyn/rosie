@@ -24,7 +24,7 @@ public class Main {
 //        build.addEventListener(new FeatureGoogleSearch());
 //        build.addEventListener(new FeatureTODO());
 
-//        new Ping().execute(null, null);
-        new Ping();
+//        new Ping();
+          new Ping().execute(null, null);
     }
 }
