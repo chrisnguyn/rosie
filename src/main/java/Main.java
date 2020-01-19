@@ -25,6 +25,6 @@ public class Main {
 //        build.addEventListener(new FeatureTODO());
 
 //        new Ping();
-          new Ping().execute(null, null);
+//        new Ping().execute(null, null);
     }
 }

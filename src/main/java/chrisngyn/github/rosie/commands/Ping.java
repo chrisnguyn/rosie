@@ -6,12 +6,10 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 public class Ping extends Commands {
 
     public Ping() {
-        super("ping");
-        System.out.println("Called ping constructor.");
+        super("Ping");
     }
 
     public void execute(MessageReceivedEvent event, String[] args) {
-//        event.getChannel().sendMessage("Called ping execute.");
-        System.out.println("IS THIS FINALLY CORRECT");
+        event.getChannel().sendMessage("Pong!").queue();
     }
 }
