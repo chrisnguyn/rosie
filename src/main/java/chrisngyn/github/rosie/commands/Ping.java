@@ -1,7 +1,7 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class Ping extends Command {
 
@@ -9,7 +9,7 @@ public class Ping extends Command {
         super("Ping");
     }
 
-    public void execute(MessageReceivedEvent event, String[] args) {
+    public void execute(GuildMessageReceivedEvent event, String[] args) {
         event.getChannel().sendMessage("Pong!").queue();
     }
 }
