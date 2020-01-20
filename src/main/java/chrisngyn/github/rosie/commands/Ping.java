@@ -1,9 +1,9 @@
 package chrisngyn.github.rosie.commands;
 
-import chrisngyn.github.rosie.Commands;
+import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class Ping extends Commands {
+public class Ping extends Command {
 
     public Ping() {
         super("Ping");
