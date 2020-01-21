@@ -9,9 +9,9 @@ import java.util.Map;
 public class CommandsHandler extends ListenerAdapter {
 
     private final Map<String, Command> commands = new HashMap<>();
-    private final static String PREFIX = "!";
+    private final static String PREFIX = "!"; // Can be subject to change from one central point rather than multiple areas.
 
-    private CommandsHandler() {
+    public CommandsHandler() {
         Ping ping = new Ping();
         commands.put(ping.getName().toLowerCase(), ping);
     }
@@ -25,15 +25,13 @@ public class CommandsHandler extends ListenerAdapter {
             return; // no need to continue at this point and create arrays and waste memory.
         }
 
-        // todo: check that args[0].length is greater than 1 before trying to substring otherwise exceptions raised
-
         String[] arguments = message.split(" "); // if you get to this point, you know someone is trying to execute a cmd.
         String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out the designated prefix. !add becomes add
 
-        Command command = commands.get(name); // nab the name of the command if exists, otherwise it'll return null
+        Command command = commands.get(name); // punch in String name, return Command object.
 
         if(command != null) {
-            command.execute(event, arguments);
+            command.execute(event, arguments); // execute the boy
         }
     }
 }

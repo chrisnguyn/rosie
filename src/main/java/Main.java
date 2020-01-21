@@ -1,3 +1,4 @@
+import chrisngyn.github.rosie.CommandsHandler;
 import chrisngyn.github.rosie.commands.Ping;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -8,13 +9,13 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // Read Discord token from file and build
-//        String fileName = "discordToken.txt";
-//        FileReader fileReader = new FileReader(fileName);
-//        BufferedReader bufferedReader = new BufferedReader(fileReader);
-//        String token = bufferedReader.readLine();
-//        JDA build = new JDABuilder(token).build();
-//        bufferedReader.close();
-//        fileReader.close();
+        String fileName = "discordToken.txt";
+        FileReader fileReader = new FileReader(fileName);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String token = bufferedReader.readLine();
+        JDA build = new JDABuilder(token).build();
+        bufferedReader.close();
+        fileReader.close();
 //
 //        build.addEventListener(new FeatureHelp());
 //        build.addEventListener(new FeatureArithmetic());
@@ -26,5 +27,7 @@ public class Main {
 
 //        new Ping();
 //        new Ping().execute(null, null);
+
+        build.addEventListener(new CommandsHandler());
     }
 }
