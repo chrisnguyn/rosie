@@ -1,5 +1,4 @@
 import chrisngyn.github.rosie.CommandsHandler;
-import chrisngyn.github.rosie.commands.Ping;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import java.io.BufferedReader;
@@ -16,7 +15,7 @@ public class Main {
         JDA build = new JDABuilder(token).build();
         bufferedReader.close();
         fileReader.close();
-//
+
 //        build.addEventListener(new FeatureHelp());
 //        build.addEventListener(new FeatureArithmetic());
 //        build.addEventListener(new FeatureRNG());
@@ -25,9 +24,7 @@ public class Main {
 //        build.addEventListener(new FeatureGoogleSearch());
 //        build.addEventListener(new FeatureTODO());
 
-//        new Ping();
-//        new Ping().execute(null, null);
-
+        // EventListener - tells JDA that I want to be listening to events and transmitting data to my CommandsHandler class
         build.addEventListener(new CommandsHandler());
     }
 }
