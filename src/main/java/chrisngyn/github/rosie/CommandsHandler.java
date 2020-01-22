@@ -20,8 +20,10 @@ public class CommandsHandler extends ListenerAdapter {
         commands.put(ping.getName().toLowerCase(), ping);
         Help help = new Help();
         commands.put(help.getName().toLowerCase(), help);
-        Arithmetic arithmetic = new Arithmetic();
-        commands.put(arithmetic.getName().toLowerCase(), arithmetic);
+
+        /* FeatureArithmetic.java */
+        Arithmetic calculate = new Arithmetic();
+        commands.put(calculate.getName().toLowerCase(), calculate);
     }
 
     @Override

@@ -6,13 +6,13 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 public class Arithmetic extends Command {
 
     public Arithmetic() {
-        super("Arithmetic");
+        super("Calculate");
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !calculate 10 + 10
 
-        int num1 = Integer.parseInt(args[1]);
-        int num2 = Integer.parseInt(args[2]);
+        Double num1 = Double.parseDouble(args[1]);
+        Double num2 = Double.parseDouble(args[3]);
 
         switch (args[2]) {
             case "+":
