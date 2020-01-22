@@ -29,6 +29,9 @@ public class CommandsHandler extends ListenerAdapter {
         /* FeatureReminder.java */
         Reminder remindme = new Reminder();
         commands.put(remindme.getName().toLowerCase(), remindme); // Reminder.java, what is in the constructor, what you call the command
+
+        /* FeatureTODO.java */
+
     }
 
     @Override
