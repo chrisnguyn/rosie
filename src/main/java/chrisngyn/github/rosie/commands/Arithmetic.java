@@ -10,32 +10,34 @@ public class Arithmetic extends Command {
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !calculate 10 + 10
+        if (args.length != 4) {
+            event.getChannel().sendMessage("Improper use of command. Please consult !help for documentation.").queue();
+        } else {
+            Double num1 = Double.parseDouble(args[1]);
+            Double num2 = Double.parseDouble(args[3]);
 
-        Double num1 = Double.parseDouble(args[1]);
-        Double num2 = Double.parseDouble(args[3]);
-
-        switch (args[2]) {
-            case "+":
-                event.getChannel().sendMessage("Result: " + (num1 + num2)).queue();
-                break;
-            case "-":
-                event.getChannel().sendMessage("Result: " + (num1 - num2)).queue();
-                break;
-            case "*":
-                event.getChannel().sendMessage("Result: " + (num1 * num2)).queue();
-                break;
-            case "/":
-                event.getChannel().sendMessage("Result: " + (num1 / num2)).queue();
-                break;
-            case "%":
-                event.getChannel().sendMessage("Result: " + (num1 % num2)).queue();
-                break;
-            case "^":
-                event.getChannel().sendMessage("Result: " + Math.pow(num1, num2)).queue();
-                break;
-            default:
-                event.getChannel().sendMessage("Unknown operation. Please consult !help for documentation.").queue();
+            switch (args[2]) {
+                case "+":
+                    event.getChannel().sendMessage("Result: " + (num1 + num2)).queue();
+                    break;
+                case "-":
+                    event.getChannel().sendMessage("Result: " + (num1 - num2)).queue();
+                    break;
+                case "*":
+                    event.getChannel().sendMessage("Result: " + (num1 * num2)).queue();
+                    break;
+                case "/":
+                    event.getChannel().sendMessage("Result: " + (num1 / num2)).queue();
+                    break;
+                case "%":
+                    event.getChannel().sendMessage("Result: " + (num1 % num2)).queue();
+                    break;
+                case "^":
+                    event.getChannel().sendMessage("Result: " + Math.pow(num1, num2)).queue();
+                    break;
+                default:
+                    event.getChannel().sendMessage("Unknown operation. Please consult !help for documentation.").queue();
+            }
         }
-
     }
 }

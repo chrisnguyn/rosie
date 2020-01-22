@@ -3,6 +3,7 @@ package chrisngyn.github.rosie;
 import chrisngyn.github.rosie.commands.Arithmetic;
 import chrisngyn.github.rosie.commands.Help;
 import chrisngyn.github.rosie.commands.Ping;
+import chrisngyn.github.rosie.commands.Reminder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import java.util.HashMap;
@@ -24,6 +25,10 @@ public class CommandsHandler extends ListenerAdapter {
         /* FeatureArithmetic.java */
         Arithmetic calculate = new Arithmetic();
         commands.put(calculate.getName().toLowerCase(), calculate);
+
+        /* FeatureReminder.java */
+        Reminder remindme = new Reminder();
+        commands.put(remindme.getName().toLowerCase(), remindme); // Reminder.java, what is in the constructor, what you call the command
     }
 
     @Override
