@@ -43,7 +43,7 @@ public class Reminder extends Command {
         // Fix 1. File -> Settings -> Project bytecode version: 8, and delete all per-module bytecode versions
         // Fix 2. File -> Project Structure -> Language level 8
         // Fix 3. IntelliJ IDEA -> Preferences -> change project bytecode from 1.5 to 1.8
-        user.openPrivateChannel().queue((channel) -> channel.sendMessage(reminder).queueAfter(delay, unit));
+        user.openPrivateChannel().queue((channel) -> channel.sendMessage(reminder).queueAfter(delay, unit)); // ctrl + click for more info
         event.getChannel().sendMessage("Your reminder has been set!").queue();
     }
 
