@@ -5,6 +5,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 public abstract class Command {
 
     // All commands are some form of command. All command classes will inherit this.
+    // Jacob: remember you want to change as little code as possible if you want a different design decision
 
     private final String name;
 
