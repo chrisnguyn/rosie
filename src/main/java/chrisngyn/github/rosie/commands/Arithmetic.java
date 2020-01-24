@@ -37,7 +37,9 @@ public class Arithmetic extends Command {
                     break;
                 default:
                     event.getChannel().sendMessage("Unknown operation. Please consult !help for documentation.").queue();
+                    // return;
             }
+            // event.getChannel().sendMessage("Result: " + Math.pow(num1, num2)).queue();
         }
     }
 }
