@@ -16,6 +16,10 @@ public class RandomNumberGeneration {
           make a random obj
           use it to decide one or the other
           gg
+          
+          t!choose arg1 | arg2 | arg3 | arg4 | arg5 - tatsu can choose MULTIPLE ARGS
+          
+          so after you split on (" | ") count how long it is then make the random obj. choose accordingly
       }
   */
   
