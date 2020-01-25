@@ -7,24 +7,16 @@ import java.io.FileReader;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-        // Read Discord token from file and build
-        String fileName = "discordToken.txt";
-        FileReader fileReader = new FileReader(fileName);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String token = bufferedReader.readLine();
+        // read Discord token from file and build
+        String file = "discordtoken.txt";
+        FileReader reader = new FileReader(file);
+        BufferedReader buffer = new BufferedReader(reader);
+        String token = buffer.readLine();
+        buffer.close();
+        reader.close();
         JDA build = new JDABuilder(token).build();
-        bufferedReader.close();
-        fileReader.close();
 
-//        build.addEventListener(new FeatureHelp());
-//        build.addEventListener(new FeatureArithmetic());
-//        build.addEventListener(new FeatureRNG());
-//        build.addEventListener(new FeatureReminder());
-//        build.addEventListener(new FeatureReddit());
-//        build.addEventListener(new FeatureGoogleSearch());
-//        build.addEventListener(new FeatureTODO());
-
-        // EventListener - tells JDA that I want to be listening to events and transmitting data to my CommandsHandler class
+        // an EventListener tells JDA to listen to events and transmit the data to CommandsHandler class through a websocket
         build.addEventListener(new CommandsHandler());
     }
 }

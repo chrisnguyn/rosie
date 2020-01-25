@@ -5,6 +5,8 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class Ping extends Command {
 
+    // Basic command to test if the bot is up and running, !ping should return "Pong!"
+
     public Ping() {
         super("Ping");
     }

@@ -4,8 +4,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public abstract class Command {
 
-    // All commands are some form of command. All command classes will inherit this.
-    // Jacob: remember you want to change as little code as possible if you want a different design decision
+    // all commands are some form of command; all command classes will inherit this class!
 
     private final String name;
 
@@ -13,7 +12,7 @@ public abstract class Command {
         this.name = name;
     }
 
-    public String getName() {
+    public String getName() { // for the map, so it can know what word calls what command
         return name;
     }
 
