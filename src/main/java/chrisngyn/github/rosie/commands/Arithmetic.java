@@ -9,6 +9,7 @@ public class Arithmetic extends Command {
         super("Calculate");
     }
 
+    @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !calculate 10 + 10
         if (args.length != 4) {
             event.getChannel().sendMessage("Improper use of command. Please consult !help for documentation.").queue();
