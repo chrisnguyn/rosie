@@ -28,13 +28,39 @@ public class RandomNumberGeneration extends Command {
                 int dice = random.nextInt(6) + 1; // 0-5, +1, 1-6 instead of 0-6 by making bound 7
                 event.getChannel().sendMessage("Result of your dice roll: **" + dice + "**").queue();
                 break;
-                
+
             case "card":
                 // ...
                 break;
-            case "choose":
-                // ...
+
+                /*
+      CURRENTLY DO NOT HAVE ACCESS TO MY COMPUTER BUT IT IS 12:31AM AND I NEED TO WRITE THIS BEFORE I FORGET LOL
+
+      !choose [arg1] | [arg2]
+
+      public void execute(Event event, String[] args) {
+
+          event.getChannel().getContent() gives "!choose [arg1] | [arg2]"
+          String t = event.getChannel().getContent().substring(args[0].length) gives "[arg1] | [arg2]"
+          String[] x = t.split(" | "); gives [arg1, arg2]
+
+          make a random obj
+          use it to decide one or the other
+          gg
+
+          t!choose arg1 | arg2 | arg3 | arg4 | arg5 - tatsu can choose MULTIPLE ARGS
+
+          so after you split on (" | ") count how long it is then make the random obj. choose accordingly
+      }
+  */
+
+            case "choose": // !random choose [arg1] | [arg2]
+                String content = event.getMessage().getContentRaw().substring(args[0].length());    // gives "[arg1] | [args2]"
+                String[] contentSpliced = content.split(" | ");                              // gives an array of [arg1, arg2]; currently count 2
+                int choose = random.nextInt(contentSpliced.length);                                // length = 2, bound = 2, range 0-1.
+                event.getChannel().sendMessage("").queue();
                 break;
+
             case "between":
                 // ...
                 break;

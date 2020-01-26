@@ -14,6 +14,8 @@ public class Help extends Command {
 
         /* Discord uses special formatting for their text. This is just me adapting to that. Please ignore why it is so messy. */
 
+        // EXTREMELY OUTDATED! 01 25 2020
+
         event.getChannel().sendMessage("Hello and thank you for using me!\n" +
                 "\n" +
                 "I am a personal assistant Discord Bot that aims to improve quality of life and reduce number of trivialities one faces in their everyday life.\n" +
