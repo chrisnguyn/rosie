@@ -19,14 +19,16 @@ public class RandomNumberGeneration extends Command {
         switch (args[1]) {
 
             case "coin":
-                int rand = random.nextInt(2); // 0 or 1.
-                String headsOrTails = (rand == 0 ? "HEADS" : "TAILS");
-                event.getChannel().sendMessage("Result: " + headsOrTails).queue();
+                int coin = random.nextInt(2); // 0 or 1.
+                String headsOrTails = (coin == 0 ? "HEADS" : "TAILS");
+                event.getChannel().sendMessage("Result of your coin flip: **" + headsOrTails + "**").queue();
                 break;
 
             case "dice":
-                // ...
+                int dice = random.nextInt(6) + 1; // 0-5, +1, 1-6 instead of 0-6 by making bound 7
+                event.getChannel().sendMessage("Result of your dice roll: **" + dice + "**").queue();
                 break;
+                
             case "card":
                 // ...
                 break;
