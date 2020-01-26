@@ -22,6 +22,10 @@ public class CommandsHandler extends ListenerAdapter {
         Arithmetic calculate = new Arithmetic();
         commands.put(calculate.getName().toLowerCase(), calculate);
 
+        /* FeatureRNG.java */
+        RandomNumberGeneration random = new RandomNumberGeneration();
+        commands.put(random.getName().toLowerCase(), random);
+
         /* FeatureReminder.java */
         Reminder remindme = new Reminder();
         commands.put(remindme.getName().toLowerCase(), remindme);
