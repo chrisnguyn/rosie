@@ -3,6 +3,8 @@ package chrisngyn.github.rosie.commands;
 import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
+import java.util.Random;
+
 public class RandomNumberGeneration extends Command {
 
     public RandomNumberGeneration() {
@@ -12,11 +14,16 @@ public class RandomNumberGeneration extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !random coin
 
+        Random random = new Random();
+
         switch (args[1]) {
 
             case "coin":
-                // ...
+                int rand = random.nextInt(2); // 0 or 1.
+                String headsOrTails = (rand == 0 ? "HEADS" : "TAILS");
+                event.getChannel().sendMessage("Result: " + headsOrTails).queue();
                 break;
+
             case "dice":
                 // ...
                 break;
