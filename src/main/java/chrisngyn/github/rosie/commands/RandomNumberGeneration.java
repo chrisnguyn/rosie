@@ -11,8 +11,13 @@ public class RandomNumberGeneration extends Command {
         super("Random"); // !random coin, !random dice, !random card, !random choose [arg] | [arg]
     }
 
+    // compiler angry if we try to Override a method that DOESN'T exist in superclass
+    // if we have "public void myMethod()" with an Override tag, it'll get angry because there isn't one in super called that
+    // no @Override tag on a method that exists in super - fine, whatever, but bad practise
+    // no @Override tag on a method that doesn't exist in super - it'll allow it even though you expect it to be a super method
+    // maybe you typed it wrong. for example, imagine you called it GuildMessageRecIEvedEvent (misspelled), it'll allow it if no tag
     @Override
-    public void execute(GuildMessageReceivedEvent event, String[] args) { // !random coin
+    public void execute(GuildMessageReceivedEvent event, String[] args) {
 
         Random random = new Random();
 
