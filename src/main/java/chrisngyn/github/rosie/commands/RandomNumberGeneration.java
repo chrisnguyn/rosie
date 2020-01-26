@@ -1,6 +1,8 @@
 package chrisngyn.github.rosie.commands;
 
 public class RandomNumberGeneration {
+
+    
   
   /*
       CURRENTLY DO NOT HAVE ACCESS TO MY COMPUTER BUT IT IS 12:31AM AND I NEED TO WRITE THIS BEFORE I FORGET LOL

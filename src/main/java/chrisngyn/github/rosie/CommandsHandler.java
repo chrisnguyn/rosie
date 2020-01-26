@@ -1,9 +1,6 @@
 package chrisngyn.github.rosie;
 
-import chrisngyn.github.rosie.commands.Arithmetic;
-import chrisngyn.github.rosie.commands.Help;
-import chrisngyn.github.rosie.commands.Ping;
-import chrisngyn.github.rosie.commands.Reminder;
+import chrisngyn.github.rosie.commands.*;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import java.util.HashMap;
