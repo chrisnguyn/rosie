@@ -15,7 +15,7 @@ public class CommandsHandler extends ListenerAdapter {
         /* FeatureHelp.java */
         Ping ping = new Ping();
         commands.put(ping.getName().toLowerCase(), ping);
-        Help help = new Help();
+        Help help = new Help();                                 // is-a command through inheritance
         commands.put(help.getName().toLowerCase(), help);
 
         /* FeatureArithmetic.java */
