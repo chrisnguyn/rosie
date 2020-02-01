@@ -9,7 +9,7 @@ public class AdvancedArithmetic extends Command {
         super("MoreMath");
     }
 
-    public void execute(GuildMessageReceivedEvent event, String[] args) { // !moremath quadratic, pythagorean, sin, cos, tan
+    public void execute(GuildMessageReceivedEvent event, String[] args) { // !moremath quadratic, pythagorean, sin, cos, tan, c2f, f2c
         switch (args[1]) {
             case "quadratic": // !moremath quadratic 1 2 3
                 double a = Double.parseDouble(args[2]);
@@ -48,6 +48,16 @@ public class AdvancedArithmetic extends Command {
 
             case "tan":
                 event.getChannel().sendMessage("Result: **" + Math.tan(Integer.parseInt(args[2])) + "**").queue();
+                break;
+
+            case "c2f": // !moremath c2f 70
+                double c2f = ((Double.parseDouble(args[2]) * 9) / 5) + 32;
+                event.getChannel().sendMessage(args[2] + " degrees Celsius to Fahrenheit is: **" + c2f + "**").queue();
+                break;
+
+            case "f2c":
+                double f2c = ((Double.parseDouble(args[2]) - 32) * 5) / 9;
+                event.getChannel().sendMessage(args[2] + " degrees Fahrenheit to Celsius is: **" + f2c + "**").queue();
                 break;
         }
     }

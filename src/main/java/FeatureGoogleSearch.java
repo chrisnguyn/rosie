@@ -13,7 +13,7 @@ public class FeatureGoogleSearch extends ListenerAdapter {
     // https://www.googleapis.com/customsearch/v1?q=[QUERY_HERE]&cx=[SEARCH_ENGINE_ID_HERE]&num=3&key=[API_KEY_HERE]
 
     public static String[] getGoogleCredentials() throws Exception {
-        String fileName = "googleCredentials.txt";
+        String fileName = "googlecredentials.txt";
         FileReader fileReader = new FileReader(fileName);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String searchEngineID = bufferedReader.readLine();

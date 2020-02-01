@@ -25,7 +25,8 @@ public class RandomNumberGeneration extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
 
-        switch (args[1]) {
+        // NOTE: !random card works, but !random CARD will not. this IS case sensitive
+        switch (args[1].toLowerCase()) {
             case "coin":
                 int coin = random.nextInt(2); // 0 or 1.
                 String headsOrTails = (coin == 0 ? "HEADS" : "TAILS");
