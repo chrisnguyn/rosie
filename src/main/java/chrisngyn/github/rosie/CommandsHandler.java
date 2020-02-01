@@ -11,7 +11,8 @@ public class CommandsHandler extends ListenerAdapter {
     private final Map<String, Command> commands = new HashMap<>();
     private final static String PREFIX = "!"; // subject to change from one central point rather than multiple areas
 
-    public CommandsHandler() { // this is going to get longer as I add more classes, use varargs?
+    public CommandsHandler() throws Exception { // this is going to get longer as I add more classes, use varargs?
+
         /* FeatureHelp.java */
         Ping ping = new Ping();
         commands.put(ping.getName().toLowerCase(), ping);
@@ -38,6 +39,15 @@ public class CommandsHandler extends ListenerAdapter {
 
         /* FeatureReddit.java */
         RedditSearch reddit = new RedditSearch();
+        commands.put(reddit.getName().toLowerCase(), reddit);
+
+        /* FeatureTODO.java */
+        ToDoList todo = new ToDoList();
+        commands.put(todo.getName().toLowerCase(), todo);
+
+        /* FeatureGoogleSearch.java */
+        GoogleSearch search = new GoogleSearch();
+        commands.put(search.getName().toLowerCase(), search);
     }
 
     @Override
