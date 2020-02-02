@@ -4,7 +4,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public abstract class Command {
 
-    // all commands are some form of command; all command classes will inherit this class
+    // all commands are some form of command; all command classes will inherit this class, eg. ping is-a command through inheritance
     private final String name;
 
     public Command(String name) {   // when a subclass object is created, super() will run and create an object with that name
