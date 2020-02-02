@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>rosie</groupId>
     <artifactId>rosie</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -16,28 +16,21 @@
             <version>3.8.0_436</version>
         </dependency>
 
-        <!-- JRAW - Java Reddit Wrapper -->
+        <!-- JRAW - Java Reddit Wrapper, RedditSearch.java -->
         <dependency>
             <groupId>net.dean.jraw</groupId>
             <artifactId>JRAW</artifactId>
             <version>1.1.0</version>
         </dependency>
 
-        <!-- Google Search API -->
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-customsearch</artifactId>
-            <version>v1-rev74-1.25.0</version>
-        </dependency>
-
-        <!-- JSON; https://mvnrepository.com/artifact/org.json/json -->
+        <!-- JSON; https://mvnrepository.com/artifact/org.json/json, GoogleSearch.java -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20190722</version>
         </dependency>
 
-        <!-- JDBC: https://mvnrepository.com/artifact/mysql/mysql-connector-java (because I don't want to download a .jar file) -->
+        <!-- JDBC: https://mvnrepository.com/artifact/mysql/mysql-connector-java (don't want to download a .jar file) -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
