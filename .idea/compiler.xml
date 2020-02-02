@@ -9,8 +9,5 @@
         <module name="rosie" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="rosie" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
