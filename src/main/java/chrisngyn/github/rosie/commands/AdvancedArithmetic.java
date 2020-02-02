@@ -5,8 +5,12 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class AdvancedArithmetic extends Command {
 
+    String documentation = "**!moremath quadratic** [number1] [number2] [number3] - quadratic formula, enter values to get the roots of an equation. \n" +
+            "> **!moremath pythagorean** [number1] [number2] - pythagorean theorem, enter two side lengths to get the hypotenuse. \n" +
+            "> **!moremath** [**sin**, **cos**, **tan**, **c2f**, **f2c**] [number] - sin, cos, tan, celsius to fahrenheit, and fahrenheit to celsius conversions.";
+
     public AdvancedArithmetic() {
-        super("MoreMath");
+        super("moremath");
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !moremath quadratic, pythagorean, sin, cos, tan, c2f, f2c
