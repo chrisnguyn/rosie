@@ -50,6 +50,9 @@ public class CommandsHandler extends ListenerAdapter {
         /* FeatureGoogleSearch.java */
         GoogleSearch search = new GoogleSearch();
         commands.put(search.getName().toLowerCase(), search);
+
+        /* Music.java */
+        // NOT YET IMPLEMENTED
     }
 
     @Override
@@ -65,10 +68,8 @@ public class CommandsHandler extends ListenerAdapter {
 
         Command command = commands.get(name); // punch in String name, return Command object
 
-        try {
-            if (command != null) { command.execute(event, arguments); } // EXECUTE COMMAND!
-        } catch (Exception e) {
-            System.err.println("Error in CommandsHandler.java.");
+        if (commands != null) {
+            command.execute(event, arguments); // EXECUTE COMMAND!
         }
     }
 }
