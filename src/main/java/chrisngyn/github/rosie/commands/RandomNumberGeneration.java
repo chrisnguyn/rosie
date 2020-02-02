@@ -2,18 +2,23 @@ package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-
 import java.util.Arrays;
 import java.util.Random;
 
 public class RandomNumberGeneration extends Command {
 
+    String documentation = "**!random coin** - flip a coin.\n" +
+            "> **!random dice** - roll a die.\n" +
+            "> **!random card** - draw a card.\n" +
+            "> **!random choose** option1 | option2 | option3 | ... - choose an option.\n" +
+            "> **!random between** [number1] [number2] - get a number in that range (inclusive).";
+
     Random random = new Random(); // doesn't need to be inside of execute, why create new object every call?
-    String[] value = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"}; // 0-13
+    String[] value = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"}; // 0-13
     String[] suit = {"Clubs", "Spades", "Hearts", "Diamonds"}; // 0-3
 
     public RandomNumberGeneration() {
-        super("Random");
+        super("random");
     }
 
     // compiler angry if we try to Override a method that DOESN'T exist in superclass

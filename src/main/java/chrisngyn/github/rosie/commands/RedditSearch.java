@@ -18,6 +18,8 @@ import java.util.List;
 
 public class RedditSearch extends Command {
 
+    String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
+
     Credentials oauth;
     UserAgent user;
     RedditClient client;
@@ -28,10 +30,10 @@ public class RedditSearch extends Command {
         String file = "redditcredentials.txt";
         FileReader reader = new FileReader(file);
         BufferedReader buffer = new BufferedReader(reader);
-        credentials[0] = buffer.readLine();     // username
-        credentials[1] = buffer.readLine();     // password
-        credentials[2] = buffer.readLine();     // clientID
-        credentials[3] = buffer.readLine();     // clientSecret
+        this.credentials[0] = buffer.readLine(); // username
+        this.credentials[1] = buffer.readLine(); // password
+        this.credentials[2] = buffer.readLine(); // clientID
+        this.credentials[3] = buffer.readLine(); // clientSecret
         buffer.close();
         reader.close();
         this.oauth = Credentials.script(credentials[0], credentials[1], credentials[2], credentials[3]);

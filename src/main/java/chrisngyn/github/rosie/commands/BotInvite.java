@@ -5,8 +5,10 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class BotInvite extends Command {
 
+    String documentation = "**!botinvite** - generate a link to invite Rosie to move servers!";
+
     public BotInvite() {
-        super("BotInvite");
+        super("botinvite");
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) {
