@@ -17,6 +17,7 @@ public class Main {
         JDA build = new JDABuilder(token).build();
 
         // an EventListener tells JDA to listen to events and transmit the data to CommandsHandler class through a websocket
+        // Main --> CommandsHandler --> calls constructor of all other classes --> put into map --> execute when needed
         build.addEventListener(new CommandsHandler());
     }
 }
