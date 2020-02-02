@@ -32,6 +32,8 @@ public class CommandsHandler extends ListenerAdapter {
         /* FeatureRNG.java */
         RandomNumberGeneration random = new RandomNumberGeneration();
         commands.put(random.getName().toLowerCase(), random);
+        EightBall eightBall = new EightBall();
+        commands.put(eightBall.getName().toLowerCase(), eightBall);
 
         /* FeatureReminder.java */
         Reminder remindme = new Reminder();
@@ -63,8 +65,10 @@ public class CommandsHandler extends ListenerAdapter {
 
         Command command = commands.get(name); // punch in String name, return Command object
 
-        if(command != null) {
-            command.execute(event, arguments);
+        try {
+            if (command != null) { command.execute(event, arguments); } // EXECUTE COMMAND!
+        } catch (Exception e) {
+            System.err.println("Error in CommandsHandler.java.");
         }
     }
 }
