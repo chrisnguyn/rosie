@@ -13,46 +13,36 @@ public class CommandsHandler extends ListenerAdapter {
 
     public CommandsHandler() throws Exception { // this is going to get longer as I add more classes, use varargs?
 
-        /* FeatureHelp.java */
         Ping ping = new Ping();
         commands.put(ping.getName().toLowerCase(), ping);
-        Help help = new Help(); // is-a command through inheritance
+        Help help = new Help();
         commands.put(help.getName().toLowerCase(), help);
         ServerInvite serverInvite = new ServerInvite();
         commands.put(serverInvite.getName().toLowerCase(), serverInvite);
         BotInvite botInvite = new BotInvite();
         commands.put(botInvite.getName().toLowerCase(), botInvite);
 
-        /* FeatureArithmetic.java */
         Arithmetic calculate = new Arithmetic();
         commands.put(calculate.getName().toLowerCase(), calculate);
         AdvancedArithmetic moremath = new AdvancedArithmetic();
         commands.put(moremath.getName().toLowerCase(), moremath);
 
-        /* FeatureRNG.java */
         RandomNumberGeneration random = new RandomNumberGeneration();
         commands.put(random.getName().toLowerCase(), random);
         EightBall eightBall = new EightBall();
         commands.put(eightBall.getName().toLowerCase(), eightBall);
 
-        /* FeatureReminder.java */
         Reminder remindme = new Reminder();
         commands.put(remindme.getName().toLowerCase(), remindme);
 
-        /* FeatureReddit.java */
         RedditSearch reddit = new RedditSearch();
         commands.put(reddit.getName().toLowerCase(), reddit);
 
-        /* FeatureTODO.java */
         ToDoList todo = new ToDoList();
         commands.put(todo.getName().toLowerCase(), todo);
 
-        /* FeatureGoogleSearch.java */
         GoogleSearch search = new GoogleSearch();
         commands.put(search.getName().toLowerCase(), search);
-
-        /* Music.java */
-        // NOT YET IMPLEMENTED
     }
 
     @Override

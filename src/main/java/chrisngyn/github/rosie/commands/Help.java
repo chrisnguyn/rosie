@@ -31,45 +31,44 @@ public class Help extends Command {
         Reminder reminder = new Reminder();
 
         // REDDIT
-//        RedditSearch reddit = new RedditSearch();
+        RedditSearch reddit = new RedditSearch();
 
         // GOOGLE SEARCH
-//        GoogleSearch google = new GoogleSearch();
+        GoogleSearch google = new GoogleSearch();
 
         // 2_DO LIST
-//        ToDoList todo = new ToDoList();
+        ToDoList todo = new ToDoList();
 
         // MUSIC
         Music music = new Music();
 
-        String ret =
+        String ret1 =
                 "Hello and thank you for using me! I am a personal assistant Discord bot that aims to improve quality of life.\n\n" +
                 "**FEATURES LIST - LAST UPDATED ON FEBRUARY 2ND, 2020**\n\n" +
                 "**HELP**\n" +
-                "> " + this.documentation + "\n" +
-                "> " + ping.documentation + "\n" +
-                "> " + botInvite.documentation + "\n" +
-                "> " + serverInvite.documentation + "\n\n" +
+                "> " + this.documentation           + "\n" +
+                "> " + ping.documentation           + "\n" +
+                "> " + botInvite.documentation      + "\n" +
+                "> " + serverInvite.documentation   + "\n" +
                 "**CALCULATIONS**\n" +
-                "> " + arithmetic.documentation + "\n" +
-                "> " + advArithmetic.documentation + "\n\n" +
+                "> " + arithmetic.documentation     + "\n" +
+                "> " + advArithmetic.documentation  + "\n" +
                 "**RANDOM RESPONSE**\n" +
-                "> " + rng.documentation + "\n" +
-                "> " + eightBall.documentation + "\n\n" +
+                "> " + rng.documentation            + "\n" +
+                "> " + eightBall.documentation;
+        String ret2 =
                 "**REMINDERS**\n" +
-                "> " + reminder.documentation + "\n\n" +
+                "> " + reminder.documentation       + "\n" +
                 "**REDDIT**\n" +
-                        "> temporary filler\n\n" +
-//                "> " + reddit.documentation + "\n\n" +
+                "> " + reddit.documentation         + "\n" +
                 "**GOOGLE SEARCH**\n" +
-                        "> temporary filler\n\n" +
-//                "> " + google.documentation + "\n\n" +
+                "> " + google.documentation         + "\n" +
                 "**TODO LIST**\n" +
-                        "> temporary filler\n\n" +
-//                "> " + todo.documentation + "\n\n" +
+                "> " + todo.documentation           + "\n" +
                 "**MUSIC PLAYER**\n" +
                 "> " + music.documentation;
 
-        event.getChannel().sendMessage(ret).queue();
+        event.getChannel().sendMessage(ret1).queue(); // 2,000 character limit.
+        event.getChannel().sendMessage(ret2).queue(); // need to split.
     }
 }
