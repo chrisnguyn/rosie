@@ -15,15 +15,19 @@ public class GoogleSearch extends Command {
 
     String[] credentials = new String[2];
 
-    public GoogleSearch() throws Exception {
+    public GoogleSearch() {
         super("googlesearch");
-        String file = "googlecredentials.txt";
-        FileReader reader = new FileReader(file);
-        BufferedReader buffer = new BufferedReader(reader);
-        credentials[0] = buffer.readLine();
-        credentials[1] = buffer.readLine();
-        buffer.close();
-        reader.close();
+        try {
+            String file = "googlecredentials.txt";
+            FileReader reader = new FileReader(file);
+            BufferedReader buffer = new BufferedReader(reader);
+            credentials[0] = buffer.readLine();
+            credentials[1] = buffer.readLine();
+            buffer.close();
+            reader.close();
+        } catch (Exception e) {
+            //
+        }
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !googlesearch how to make a discord bot

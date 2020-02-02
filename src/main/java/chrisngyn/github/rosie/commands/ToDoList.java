@@ -21,17 +21,21 @@ public class ToDoList extends Command {
     String password = "";
     Connection connection;
 
-    public ToDoList() throws Exception {
+    public ToDoList() {
         super("todo");
-        String file = "MySQLconnector.txt";
-        FileReader reader = new FileReader(file);
-        BufferedReader buffer = new BufferedReader((reader));
-        this.url = buffer.readLine();
-        this.user = buffer.readLine();
-        this.password = buffer.readLine();
-        this.connection = createDBConnection();
-        buffer.close();
-        reader.close();
+        try {
+            String file = "MySQLconnector.txt";
+            FileReader reader = new FileReader(file);
+            BufferedReader buffer = new BufferedReader((reader));
+            this.url = buffer.readLine();
+            this.user = buffer.readLine();
+            this.password = buffer.readLine();
+            this.connection = createDBConnection();
+            buffer.close();
+            reader.close();
+        } catch (Exception e) {
+            //
+        }
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) {
@@ -39,6 +43,11 @@ public class ToDoList extends Command {
         long user_id = event.getAuthor().getIdLong();
         Date date = new Date(); // Sun Dec 22 18:53:32 EST 2019, footer
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); // 22/12/2019 19:21:42, how when_added is formatted
+
+        if (args.length == 1) {
+            event.getChannel().sendMessage("Improper use of command. Please type !help for documentation.").queue();
+            return;
+        }
 
         switch (args[1]) {
             case "add":
