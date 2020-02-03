@@ -1,34 +1,42 @@
 # Rosie
-Rosie is a personal assistant Discord bot that aims to improve quality of life and help reduce the number of trivialities and menial tasks one faces in their day-to-day life.
+Rosie is a personal assistant Discord bot that aims to improve quality of life.
 
-# Features List as of 12/24/2019
+# Features List - last updated February 3rd, 2020
 
 ## HELP
-+ Ping! - tests to see if Rosie is up and running. Responds with "Pong!" if so.
-+ !helpme - responds with all functionality and how to use each command.
++ !ping - tests to see if Rosie is up and running. Responds with "Pong!" if so.
++ !help - responds with all features and documentation on how to use each command.
 + !serverinvite - generates an invitation link to the server that expires in 10 minutes.
-+ !rosieinvite - generates a link to invite Rosie to more Discord servers.
++ !botinvite - generates a link to invite Rosie to more Discord servers.
 
 ## ARITHMETIC
-+ !compute [number1] [+, -, *, /, %] [number2] - computes basic math.
++ !calculate [number1] [+, -, *, /, %, ^] [number2] - computes basic math.
++ !moremath quadratic [number1] [number2] [number3] - quadratic formula; enter values to get the roots of an equation.
++ !moremath pythagorean [number1] [number2] - pythagorean theorem; enter two side lengths to get the hypotenuse. 
++ !moremath [sin, cos, tan, c2f, f2c] [number] - computes more calculations; C2F and F2C are Celsius to Fahrenheit and Fahrenheit to Celsius, respectively.
 
 ## RNG RESPONSE
-+ !coinflip - responds with HEADS or TAILS.
-+ !dice - responds with a random dice roll from 0-6 (inclusive).
-+ !card - responds with a random card.
-+ !numberbetween [number1] [number2] - responds with a random number between these two values (inclusive).
++ !random coin - flip a coin.
++ !random dice - roll a die.
++ !random card - draw a card.
++ !random choose option1 | option2 | option3 | ... - choose an option.
++ !random between [number1] [number2] - get a number in that range (inclusive).
++ !8ball [anything] - get a random Magic 8-Ball response!
 
 ## REMINDERS
-+ !remindme [number] [unit] [reminder ...] - sets reminders and direct messages you accordingly. [unit] can be s, seconds, m, minutes, h, or hours.
++ !remindme [number] [s, seconds, m, minutes, h, hours] [reminder] - set a reminder; Rosie will send you a direct message reminding you when time is up.
 
 ## REDDIT
-+ !reddit [exact name of subreddit] - responds with the top 3 current hottest posts of a subreddit.  
++ !reddit [name of subreddit] - responds with the top five current hottest posts of a subreddit.  
 
 ## GOOGLE SEARCH
-+ !search [query] - responds with the top 3 links to come up in Google.  
++ !googlesearch [query] - responds with the top three links to come up in Google.  
 
 ## TO DO LIST (basic CRUD features)
-+ !todoadd [query] - adds an event to your list.
-+ !todoview - responds with your to do list complete with time you added it, and if you completed it or not.
-+ !todocomplete [existing entry] - checks off an event on your to do list.
-+ !todoremove [existing entry] - deletes an entry on your to do list.
++ !todo add - add an entry to your todo list.
++ !todo view - view your current todo list.
++ !todo complete [existing entry] - mark an entry as completed.
++ !todo remove [existing entry] - delete an entry from your to do list.
+
+## MUSIC
++ Not yet implemented. :(
