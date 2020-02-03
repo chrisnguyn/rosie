@@ -5,8 +5,8 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class Arithmetic extends Command {
 
-    // \* is not an escape character in Java, so we do \\* to get \\ to get \* to get *...get it?
-    String documentation = "**!calculate** [number1] [**+**, **-**, **\\***, **/**, **%**, **^**] [number2] - basic computation.";
+    // \* is not an escape character in Java, so we do \\* to get \* to get * ...get it?
+    protected String documentation = "**!calculate** [number1] [**+**, **-**, **\\***, **/**, **%**, **^**] [number2] - basic computation.";
 
     public Arithmetic() {
         super("calculate");

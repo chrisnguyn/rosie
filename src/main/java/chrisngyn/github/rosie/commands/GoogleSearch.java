@@ -11,9 +11,9 @@ import org.json.*;
 
 public class GoogleSearch extends Command {
 
-    String documentation = "**!googlesearch** [query] - responds with top three Google search results for that query.";
+    protected String documentation = "**!googlesearch** [query] - responds with top three Google search results for that query.";
 
-    String[] credentials = new String[2];
+    private String[] credentials = new String[2];
 
     public GoogleSearch() {
         super("googlesearch");

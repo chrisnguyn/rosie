@@ -10,7 +10,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 public class Reminder extends Command {
 
-    String documentation = "**!remindme** [number] [s, seconds, m, minutes, h, hours] [reminder] - set a reminder; Rosie will send you a direct message reminding you when time is up.";
+    protected String documentation = "**!remindme** [number] [s, seconds, m, minutes, h, hours] [reminder] - set a reminder; Rosie will send you a direct message reminding you when time is up.";
 
     public Reminder() {
         super("remindme"); // !remindme 20 minutes take the pizza out of the oven

@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class Help extends Command {
 
-    String documentation = "**!help** - if you want to know about me and all the things I can do!";
+    protected String documentation = "**!help** - if you want to know about me and all the things I can do!";
 
     public Help() {
         super("help");

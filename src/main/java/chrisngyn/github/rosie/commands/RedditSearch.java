@@ -18,7 +18,7 @@ import java.util.List;
 
 public class RedditSearch extends Command {
 
-    String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
+    protected String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
     private String error = "";
 
     Credentials oauth;

@@ -5,7 +5,9 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class AdvancedArithmetic extends Command {
 
-    String documentation = "**!moremath quadratic** [number1] [number2] [number3] - quadratic formula, enter values to get the roots of an equation. \n" +
+    // I hope you're happy Bonnie smh. Need me to make these features because you're too lazy to do math on your own. >:-\
+
+    protected String documentation = "**!moremath quadratic** [number1] [number2] [number3] - quadratic formula, enter values to get the roots of an equation. \n" +
             "> **!moremath pythagorean** [number1] [number2] - pythagorean theorem, enter two side lengths to get the hypotenuse. \n" +
             "> **!moremath** [**sin**, **cos**, **tan**, **c2f**, **f2c**] [number] - sin, cos, tan, celsius to fahrenheit, and fahrenheit to celsius conversions.";
 
@@ -13,6 +15,7 @@ public class AdvancedArithmetic extends Command {
         super("moremath");
     }
 
+    @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !moremath quadratic, pythagorean, sin, cos, tan, c2f, f2c
         switch (args[1]) {
             case "quadratic": // !moremath quadratic 1 2 3

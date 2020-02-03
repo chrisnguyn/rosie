@@ -11,15 +11,15 @@ import java.util.Date;
 
 public class ToDoList extends Command {
 
-    String documentation = "**!todo add** - add an entry to your todo list.\n" +
+    protected String documentation = "**!todo add** - add an entry to your todo list.\n" +
             "> **!todo view** - view your current todo list.\n" +
             "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
             "> **!todo remove** [existing entry] - delete an entry from your to do list.";
 
-    String url = "";
-    String user = "";
-    String password = "";
-    Connection connection;
+    private String url = "";
+    private String user = "";
+    private String password = "";
+    private Connection connection;
 
     public ToDoList() {
         super("todo");

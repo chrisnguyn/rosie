@@ -8,7 +8,7 @@ public class EightBall extends Command {
 
     // https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
 
-    String documentation = "**!8ball** [anything] - get a random Magic 8-Ball response!";
+    protected String documentation = "**!8ball** [anything] - get a random Magic 8-Ball response!";
 
     Random random = new Random();
     private final String[] responses = { "It is certain.", "It is decidedly so.", "Without a doubt.", "Yes - definitely.", "You may rely on it.",
