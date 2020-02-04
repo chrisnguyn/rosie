@@ -15,6 +15,7 @@ public class ToDoList extends Command {
             "> **!todo view** - view your current todo list.\n" +
             "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
             "> **!todo remove** [existing entry] - delete an entry from your to do list.";
+    private String error = "";
 
     private String url = "";
     private String user = "";
@@ -34,11 +35,16 @@ public class ToDoList extends Command {
             buffer.close();
             reader.close();
         } catch (Exception e) {
-            //
+            this.error = "Error executing ToDo command.";
         }
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) {
+
+        if (this.error.isEmpty()) {
+            event.getChannel().sendMessage("Error executing this command. Please contact the bot creator!").queue();
+            return; // if the try catch caught an exception, something went wrong, if the error string isn't empty, this returns.
+        }
 
         long user_id = event.getAuthor().getIdLong();
         Date date = new Date(); // Sun Dec 22 18:53:32 EST 2019, footer

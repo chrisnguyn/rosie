@@ -12,6 +12,7 @@ import org.json.*;
 public class GoogleSearch extends Command {
 
     protected String documentation = "**!googlesearch** [query] - responds with top three Google search results for that query.";
+    private String error = "";
 
     private String[] credentials = new String[2];
 
@@ -26,11 +27,16 @@ public class GoogleSearch extends Command {
             buffer.close();
             reader.close();
         } catch (Exception e) {
-            //
+            this.error = "Error executing Google Search command.";
         }
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !googlesearch how to make a discord bot
+
+        if (this.error.isEmpty()) {
+            event.getChannel().sendMessage("Error executing this command. Please contact the bot creator!").queue();
+            return; // if the try catch caught an exception, something went wrong. makes the CLV not an empty string, this terminates early.
+        }
 
         String query = "";
         for (int i = 1; i < args.length; i++) { query += "+" + args[i]; } // query formatting, was broken before because i was appending with spaces
