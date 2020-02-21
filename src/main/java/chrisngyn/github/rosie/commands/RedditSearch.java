@@ -49,7 +49,7 @@ public class RedditSearch extends Command {
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !reddit memes
 
-        if (this.error.isEmpty()) {
+        if (!this.error.isEmpty()) {
             event.getChannel().sendMessage(error).queue(); // if failure to log into bot or something
             return;
         }

@@ -41,7 +41,7 @@ public class ToDoList extends Command {
 
     public void execute(GuildMessageReceivedEvent event, String[] args) {
 
-        if (this.error.isEmpty()) {
+        if (!this.error.isEmpty()) {
             event.getChannel().sendMessage("Error executing this command. Please contact the bot creator!").queue();
             return; // if the try catch caught an exception, something went wrong, if the error string isn't empty, this returns.
         }
@@ -135,7 +135,7 @@ public class ToDoList extends Command {
                     pstmt.execute();
                     event.getChannel().sendMessage("Your entry has been deleted in your to do list!").queue();
                 } catch (Exception e) {
-                    System.out.println("Error executing query for todoremove!");
+                    System.out.println("Error executing query for TODO_REMOVE!");
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
                 break;

@@ -33,7 +33,7 @@ public class GoogleSearch extends Command {
 
     public void execute(GuildMessageReceivedEvent event, String[] args) { // !googlesearch how to make a discord bot
 
-        if (this.error.isEmpty()) {
+        if (!this.error.isEmpty()) {
             event.getChannel().sendMessage("Error executing this command. Please contact the bot creator!").queue();
             return; // if the try catch caught an exception, something went wrong. makes the CLV not an empty string, this terminates early.
         }

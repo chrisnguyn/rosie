@@ -3,9 +3,7 @@ package chrisngyn.github.rosie.commands;
 import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-
 import java.util.concurrent.TimeUnit;
-
 import static java.util.concurrent.TimeUnit.*;
 
 public class Reminder extends Command {
