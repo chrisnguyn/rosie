@@ -140,7 +140,7 @@ public class ToDoList extends Command {
                 }
                 break;
 
-            case "default":
+            default:
                 event.getChannel().sendMessage("Improper use of command. Please type **!help** for documentation.").queue();
         }
     }

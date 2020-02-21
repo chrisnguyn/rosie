@@ -49,22 +49,22 @@ public class Help extends Command {
                 "> " + this.documentation           + "\n" +
                 "> " + ping.documentation           + "\n" +
                 "> " + botInvite.documentation      + "\n" +
-                "> " + serverInvite.documentation   + "\n" +
+                "> " + serverInvite.documentation   + "\n\n" +
                 "**CALCULATIONS**\n" +
                 "> " + arithmetic.documentation     + "\n" +
-                "> " + advArithmetic.documentation  + "\n" +
+                "> " + advArithmetic.documentation  + "\n\n" +
                 "**RANDOM RESPONSE**\n" +
                 "> " + rng.documentation            + "\n" +
                 "> " + eightBall.documentation;
         String ret2 =
                 "**REMINDERS**\n" +
-                "> " + reminder.documentation       + "\n" +
+                "> " + reminder.documentation       + "\n\n" +
                 "**REDDIT**\n" +
-                "> " + reddit.documentation         + "\n" +
+                "> " + reddit.documentation         + "\n\n" +
                 "**GOOGLE SEARCH**\n" +
-                "> " + google.documentation         + "\n" +
+                "> " + google.documentation         + "\n\n" +
                 "**TODO LIST**\n" +
-                "> " + todo.documentation           + "\n" +
+                "> " + todo.documentation           + "\n\n" +
                 "**MUSIC PLAYER**\n" +
                 "> " + music.documentation;
 
