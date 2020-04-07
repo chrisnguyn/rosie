@@ -4,71 +4,50 @@ import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class Help extends Command {
-
     protected String documentation = "**!help** - if you want to know about me and all the things I can do!";
+    Ping ping = new Ping();
+    ServerInvite serverInvite = new ServerInvite();
+    BotInvite botInvite = new BotInvite();
+    Arithmetic math = new Arithmetic();
+    AdvancedArithmetic advMath = new AdvancedArithmetic();
+    RandomNumberGeneration random = new RandomNumberGeneration();
+    EightBall eightBall = new EightBall();
+    Reminder remind = new Reminder();
+    RedditSearch reddit = new RedditSearch();
+    ToDoList todo = new ToDoList();
+    GoogleSearch search = new GoogleSearch();
 
     public Help() {
-        super("help");
+        super("help"); // when Help object is made, make call to super constructor and set the name of object to "help"
     }
 
-    @Override
+    @Override // if you aren't overriding something, you did something wrong and this would light up
     public void execute(GuildMessageReceivedEvent event, String[] args) {
-
-        // HELP SECTION
-        Ping ping = new Ping();
-        BotInvite botInvite = new BotInvite();
-        ServerInvite serverInvite = new ServerInvite();
-
-        // MATH SECTION
-        Arithmetic arithmetic = new Arithmetic();
-        AdvancedArithmetic advArithmetic = new AdvancedArithmetic();
-
-        // RANDOM RESPONSE
-        RandomNumberGeneration rng = new RandomNumberGeneration();
-        EightBall eightBall = new EightBall();
-
-        // REMINDERS
-        Reminder reminder = new Reminder();
-
-        // REDDIT
-        RedditSearch reddit = new RedditSearch();
-
-        // GOOGLE SEARCH
-        GoogleSearch google = new GoogleSearch();
-
-        // 2_DO LIST
-        ToDoList todo = new ToDoList();
-
-        // MUSIC
-        Music music = new Music();
-
-        String ret1 =
-                "Hello and thank you for using me! I am a personal assistant Discord bot that aims to improve quality of life.\n\n" +
-                "**FEATURES LIST - LAST UPDATED ON FEBRUARY 2ND, 2020**\n\n" +
+        String msg1 =
+                "Hello and thank you for using me; I am a personal assistant Discord bot that aims to improve quality of life.\n\n" +
+                "**FEATURES LIST - LAST UPDATED ON APRIL 7TH, 2020**\n\n" +
                 "**HELP**\n" +
                 "> " + this.documentation           + "\n" +
                 "> " + ping.documentation           + "\n" +
                 "> " + botInvite.documentation      + "\n" +
                 "> " + serverInvite.documentation   + "\n\n" +
-                "**CALCULATIONS**\n" +
-                "> " + arithmetic.documentation     + "\n" +
-                "> " + advArithmetic.documentation  + "\n\n" +
-                "**RANDOM RESPONSE**\n" +
-                "> " + rng.documentation            + "\n" +
+                "**MATH**\n" +
+                "> " + math.documentation           + "\n" +
+                "> " + advMath.documentation        + "\n\n" +
+                "**RANDOM RESPONSES**\n" +
+                "> " + random.documentation         + "\n" +
                 "> " + eightBall.documentation;
-        String ret2 =
-                "**REMINDERS**\n" +
-                "> " + reminder.documentation       + "\n\n" +
+        String msg2 =
+                "**REMIND ME**\n" +
+                "> " + remind.documentation         + "\n\n" +
                 "**REDDIT**\n" +
                 "> " + reddit.documentation         + "\n\n" +
                 "**GOOGLE SEARCH**\n" +
-                "> " + google.documentation         + "\n\n" +
+                "> " + search.documentation         + "\n\n" +
                 "**TODO LIST**\n" +
-                "> " + todo.documentation           + "\n\n" +
-                "**MUSIC PLAYER**\n" +
-                "> " + music.documentation;
+                "> " + todo.documentation;
 
-        event.getChannel().sendMessage(ret1).queue(); // 2,000 character limit.
-        event.getChannel().sendMessage(ret2).queue(); // need to split.
+        event.getChannel().sendMessage(msg1).queue(); // 2,000 character limit...
+        event.getChannel().sendMessage(msg2).queue(); // ...need to split
     }
 }
