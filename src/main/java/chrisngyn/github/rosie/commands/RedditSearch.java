@@ -17,21 +17,17 @@ import java.io.FileReader;
 import java.util.List;
 
 public class RedditSearch extends Command {
-
     protected String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
     private String error = "";
+    private Credentials oauth;
+    private UserAgent user;
+    private RedditClient client;
+    private String[] credentials = new String[4];
 
-    Credentials oauth;
-    UserAgent user;
-    RedditClient client;
-    String[] credentials = new String[4];
-
-    // don't throw exceptions, you need to know when something is broken. print to Discord if an error is encountered.
     public RedditSearch() {
         super("reddit");
         try {
-            String file = "redditcredentials.txt";
-            FileReader reader = new FileReader(file);
+            FileReader reader = new FileReader("redditcredentials.txt");
             BufferedReader buffer = new BufferedReader(reader);
             this.credentials[0] = buffer.readLine(); // username
             this.credentials[1] = buffer.readLine(); // password
@@ -43,22 +39,22 @@ public class RedditSearch extends Command {
             this.user = new UserAgent("bot", "Rosie", "1.0.0", "hemp3n");
             this.client = OAuthHelper.automatic(new OkHttpNetworkAdapter(user), oauth);
         } catch (Exception e) {
-            this.error = "Error executing the Reddit command.";
+            System.err.println("Error trying to build RedditSearch instance.");
+            this.error = "Error executing the Reddit command. Please contact the bot creator.";
         }
     }
 
-    public void execute(GuildMessageReceivedEvent event, String[] args) { // !reddit memes
-
-        if (!this.error.isEmpty()) {
-            event.getChannel().sendMessage(error).queue(); // if failure to log into bot or something
+    @Override
+    public void execute(GuildMessageReceivedEvent event, String[] args) {
+        if (this.error.isEmpty() == false) {
+            event.getChannel().sendMessage(error).queue(); // if it DID fail to create, our error string won't be empty.
             return;
         }
 
-        List<Submission> posts = getRedditPosts(args[1]);
-
+        List<Submission> posts = getRedditPosts(args[1]); // get subreddit from user message
         for (Submission post : posts) { // error checking with status code 403? 404?
             String returnedPosts = "";
-            returnedPosts += post.getTitle() + "\n" + "http://reddit.com" + post.getPermalink() + "\n"; // build the string so that it displayed as hyperlink in Discord
+            returnedPosts += post.getTitle() + "\n" + "http://reddit.com" + post.getPermalink() + "\n"; // build the string to be displayed as hyperlink in Discord
             event.getChannel().sendMessage(returnedPosts).queue();
         }
     }

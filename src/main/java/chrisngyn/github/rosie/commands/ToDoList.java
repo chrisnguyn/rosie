@@ -10,13 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ToDoList extends Command {
-
     protected String documentation = "**!todo add** - add an entry to your todo list.\n" +
             "> **!todo view** - view your current todo list.\n" +
             "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
             "> **!todo remove** [existing entry] - delete an entry from your to do list.";
     private String error = "";
-
     private String url = "";
     private String user = "";
     private String password = "";
@@ -25,8 +23,7 @@ public class ToDoList extends Command {
     public ToDoList() {
         super("todo");
         try {
-            String file = "MySQLconnector.txt";
-            FileReader reader = new FileReader(file);
+            FileReader reader = new FileReader("MySQLconnector.txt");
             BufferedReader buffer = new BufferedReader((reader));
             this.url = buffer.readLine();
             this.user = buffer.readLine();
@@ -35,15 +32,15 @@ public class ToDoList extends Command {
             buffer.close();
             reader.close();
         } catch (Exception e) {
-            this.error = "Error executing ToDo command.";
+            System.err.println("Error trying to build ToDoList instance.");
+            this.error = "Error executing to do command.";
         }
     }
 
     public void execute(GuildMessageReceivedEvent event, String[] args) {
-
         if (!this.error.isEmpty()) {
-            event.getChannel().sendMessage("Error executing this command. Please contact the bot creator!").queue();
-            return; // if the try catch caught an exception, something went wrong, if the error string isn't empty, this returns.
+            event.getChannel().sendMessage(error).queue();
+            return;
         }
 
         long user_id = event.getAuthor().getIdLong();
@@ -70,7 +67,7 @@ public class ToDoList extends Command {
                     pstmt.execute();
                     event.getChannel().sendMessage("Your entry has been added to your to do list!").queue();
                 } catch (Exception e) {
-                    System.out.println("Error executing query for TODO_ADD.");
+                    System.err.println("Error executing query for TODO_ADD.");
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
                 break;
@@ -94,12 +91,12 @@ public class ToDoList extends Command {
                     eb.addField("Your Entries", entries, true);
                     eb.addField("Added When", added, true);
                     eb.addField("Is Completed", completed, true);
-                    // eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png"); ):
+                    // eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png"); LOL
                     eb.setColor(9168790); // or Color.(anything), or www.shodor.org/stella2java/rgbint.html
                     eb.setFooter("Request was made at: " + date, null); // date or formatter.format(date);
                     event.getChannel().sendMessage(eb.build()).queue();
                 } catch (Exception e) {
-                    System.out.println("Error executing query for TODO_VIEW.");
+                    System.err.println("Error executing query for TODO_VIEW.");
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
                 break;
@@ -116,13 +113,12 @@ public class ToDoList extends Command {
                     pstmt.execute();
                     event.getChannel().sendMessage("Your entry has been updated in your to do list!").queue();
                 } catch (Exception e) {
-                    System.out.println("Error executing query for TODO_COMPLETE.");
+                    System.err.println("Error executing query for TODO_COMPLETE.");
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
                 break;
 
-            // if user tries to delete an entry that doesn't exist, it'll still give confirmation because technically the query WAS a success.
-            // need a way to check first if it exists.
+            // if user tries to delete an entry that doesn't exist, it'll still give confirmation; need a way to check first if it exists.
             case "remove":
                 String remove_content = "";
                 for (int i = 2; i < args.length; i++) { remove_content += args[i] + " "; }
@@ -135,13 +131,14 @@ public class ToDoList extends Command {
                     pstmt.execute();
                     event.getChannel().sendMessage("Your entry has been deleted in your to do list!").queue();
                 } catch (Exception e) {
-                    System.out.println("Error executing query for TODO_REMOVE!");
+                    System.err.println("Error executing query for TODO_REMOVE!");
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
                 break;
 
             default:
                 event.getChannel().sendMessage("Improper use of command. Please type **!help** for documentation.").queue();
+                return;
         }
     }
 
@@ -151,10 +148,8 @@ public class ToDoList extends Command {
             Connection con = DriverManager.getConnection(this.url, this.user, this.password);
             return con;
         } catch (Exception e){
-            System.out.println("Connection failed!");
-            System.out.println(e);
+            System.err.println("Unable to create DB connection!");
+            return null;
         }
-        return null;
     }
-
 }
