@@ -7,59 +7,59 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandsHandler extends ListenerAdapter {
+    private final Map<String, Command> commands = new HashMap<>(); // map command trigger --> object; get object then call execute
+    private final static String PREFIX = "!"; // subject to change from one central point rather than multiple locations
 
-    private final Map<String, Command> commands = new HashMap<>();
-    private final static String PREFIX = "!"; // subject to change from one central point rather than multiple areas
-
-    public CommandsHandler() throws Exception { // this is going to get longer as I add more classes, use varargs?
-
+    public CommandsHandler() { // create objects of all command classes and store them into the map
+        /* 1. HELP commands */
         Ping ping = new Ping();
-        commands.put(ping.getName().toLowerCase(), ping);
         Help help = new Help();
-        commands.put(help.getName().toLowerCase(), help);
         ServerInvite serverInvite = new ServerInvite();
-        commands.put(serverInvite.getName().toLowerCase(), serverInvite);
         BotInvite botInvite = new BotInvite();
+        commands.put(ping.getName().toLowerCase(), ping);
+        commands.put(help.getName().toLowerCase(), help);
+        commands.put(serverInvite.getName().toLowerCase(), serverInvite);
         commands.put(botInvite.getName().toLowerCase(), botInvite);
 
-        Arithmetic calculate = new Arithmetic();
-        commands.put(calculate.getName().toLowerCase(), calculate);
-        AdvancedArithmetic moremath = new AdvancedArithmetic();
-        commands.put(moremath.getName().toLowerCase(), moremath);
+        /* 2. ARITHMETIC */
+        Arithmetic math = new Arithmetic();
+        AdvancedArithmetic advMath = new AdvancedArithmetic();
+        commands.put(math.getName().toLowerCase(), math);
+        commands.put(advMath.getName().toLowerCase(), advMath);
 
+        /* 3. RNG RESPONSES */
         RandomNumberGeneration random = new RandomNumberGeneration();
-        commands.put(random.getName().toLowerCase(), random);
         EightBall eightBall = new EightBall();
+        commands.put(random.getName().toLowerCase(), random);
         commands.put(eightBall.getName().toLowerCase(), eightBall);
 
-        Reminder remindme = new Reminder();
-        commands.put(remindme.getName().toLowerCase(), remindme);
-
+        /* 4. OTHER */
+        Reminder remind = new Reminder();
         RedditSearch reddit = new RedditSearch();
-        commands.put(reddit.getName().toLowerCase(), reddit);
-
         ToDoList todo = new ToDoList();
-        commands.put(todo.getName().toLowerCase(), todo);
-
         GoogleSearch search = new GoogleSearch();
+        commands.put(remind.getName().toLowerCase(), remind);
+        commands.put(reddit.getName().toLowerCase(), reddit);
+        commands.put(todo.getName().toLowerCase(), todo);
         commands.put(search.getName().toLowerCase(), search);
     }
 
     @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event) { // my listener; on each event received this executes
+    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         String message = event.getMessage().getContentRaw();
 
         if (event.getAuthor().isBot() || !message.startsWith(PREFIX)) {
-            return; // no need to continue at this point and waste memory, we know they're either a bot or are not trying to use a command
+            return; // if reached, no need to continue; we know they're either a bot or not trying to use a command...
         }
 
-        String[] arguments = message.split(" "); // if you get to this point, you know someone is trying to execute a command
-        String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out the designated prefix, !calculate becomes calculate
+        String[] arguments = message.split(" "); // ...else, you know someone is trying to execute a command
+        String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out prefix; "!help" becomes "help"
+        Command command = commands.get(name); // get the command object from the map, provided a command name
 
-        Command command = commands.get(name); // punch in String name, return Command object
-
-        if (commands != null) {
-            command.execute(event, arguments); // EXECUTE COMMAND!
+        if (command != null) {
+            command.execute(event, arguments); // if map doesn't provide null value, execute...
+        } else {
+            return; // ...else, Map.get() will return null if you get a key that isn't in the map; if we get null, return
         }
     }
 }
