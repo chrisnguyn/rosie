@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CommandsHandler extends ListenerAdapter {
     private final Map<String, Command> commands = new HashMap<>(); // map command trigger --> object; get object then call execute
-    private final static String PREFIX = "!"; // subject to change from one central point rather than multiple locations
+    private final static String PREFIX = "r!"; // subject to change from one central point rather than multiple locations
 
     public CommandsHandler() { // create objects of all command classes and store them into the map
         /* 1. HELP commands */
