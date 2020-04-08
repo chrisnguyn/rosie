@@ -1,6 +1,8 @@
 # Rosie
 Rosie is a personal assistant Discord bot that aims to improve quality of life.
 
+![](rosie.gif)
+
 # Features List - last updated February 3rd, 2020
 
 ## HELP
