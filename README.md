@@ -1,9 +1,10 @@
 # Rosie
-Rosie is a personal assistant Discord bot that aims to improve quality of life.
-
+[Discord](https://discord.com/) is chatting platform similar to Slack, where people can talk to other people who are in the same channel / server. Using the [Discord API](https://discord.com/developers/applications), people can make Discord bots to interact with! Rosie is a personal assistant Discord bot with many features that aim to improve quality of life through convenience.  
+  
+Here's a short GIF demoing Rosie!
 ![](rosie.gif)
 
-# Features - last updated 04/08/2020
+## Features - last updated 05/12/2020
 
 ### HELP
 + r!ping - tests to see if Rosie is up and running. Responds with "Pong!" if so.
@@ -40,7 +41,7 @@ Rosie is a personal assistant Discord bot that aims to improve quality of life.
 + r!todo complete [existing entry] - mark an entry as completed.
 + r!todo remove [existing entry] - delete an entry from your to do list.
 
-# Configure
+## Configuration & Setup
 + discordtoken.txt - your Discord bot token (get this from Discord developer portal)
 + googlecredentials.txt - your search engine ID and API key (get this from the Custom Search API page).
 + MySQLconnector.txt - your database URL, username, and password. Make sure you have a MySQL server installed, and the schema is configured.
