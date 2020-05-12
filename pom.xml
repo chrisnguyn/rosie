@@ -34,7 +34,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.19</version>
+            <version>8.0.19</version> <!-- I spent two hours wondering why this wasn't resolving. I had auto import off... -->
         </dependency>
     </dependencies>
 

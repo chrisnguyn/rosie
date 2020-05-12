@@ -148,6 +148,7 @@ public class ToDoList extends Command {
             Connection con = DriverManager.getConnection(this.url, this.user, this.password);
             return con;
         } catch (Exception e){
+            System.err.println(e);
             System.err.println("Unable to create DB connection!");
             return null;
         }

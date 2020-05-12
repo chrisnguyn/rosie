@@ -11,11 +11,11 @@ public abstract class Command {
         this.name = name;
     }
 
-    // ...for the map, so it can know what trigger word will call what command
+    // ...for the map, so it can know what trigger word will call the command
     public String getName() {
         return name;
     }
 
-    // subject to the behaviour of each command
+    // .execute() is subject to the behaviour of each command
     public abstract void execute(GuildMessageReceivedEvent event, String[] args);
 }
