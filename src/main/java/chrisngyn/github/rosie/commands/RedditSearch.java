@@ -18,7 +18,7 @@ import java.util.List;
 
 public class RedditSearch extends Command {
     protected String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
-    private String error = "";
+    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in building the bot.
     private Credentials oauth;
     private UserAgent user;
     private RedditClient client;
@@ -37,7 +37,7 @@ public class RedditSearch extends Command {
             reader.close();
             this.oauth = Credentials.script(credentials[0], credentials[1], credentials[2], credentials[3]);
             this.user = new UserAgent("bot", "Rosie", "1.0.0", "hemp3n");
-            this.client = OAuthHelper.automatic(new OkHttpNetworkAdapter(user), oauth);
+            this.client = OAuthHelper.automatic(new OkHttpNetworkAdapter(user), oauth); // create Reddit bot instance
         } catch (Exception e) {
             System.err.println("Error trying to build RedditSearch instance.");
             this.error = "Error executing the Reddit command. Please contact the bot creator.";

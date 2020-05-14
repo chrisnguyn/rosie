@@ -6,18 +6,19 @@ import java.io.FileReader;
 
 public class Main {
     public static void main(String[] args) {
-        // read Discord token from file and build bot instance; an EventListener listen to events and transmits data to CommandsHandler class
-        // Run --> Main --> CommandsHandler --> call constructor of other classes --> puts objects into map --> execute when prompted
+        // read Discord token from file and build Discord bot instance. An EventListener listen to events and transmits data to CommandsHandler class
+        // program flow: Run --> Main --> CommandsHandler --> call constructors of classes --> put objects into map --> look up and execute when prompted
         try {
             FileReader reader = new FileReader("discordtoken.txt");
             BufferedReader buffer = new BufferedReader(reader);
             String token = buffer.readLine();
             buffer.close();
             reader.close();
-            JDA build = new JDABuilder(token).build();
-            build.addEventListener(new CommandsHandler());
+
+            JDA bot = new JDABuilder(token).build();
+            bot.addEventListener(new CommandsHandler());
         } catch (Exception e) {
-            System.err.println("Error reading file and/or building the bot. Perhaps your file name is off, or your token is invalid.");
+            System.err.println(e + "\n Error reading file and/or building the bot. Maybe your file name is off, or your token is invalid.");
         }
     }
 }

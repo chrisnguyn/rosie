@@ -11,7 +11,7 @@ import org.json.*;
 
 public class GoogleSearch extends Command {
     protected String documentation = "**!googlesearch** [query] - responds with top three Google search results for that query.";
-    private String error = "";
+    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in running the constructor
     private String[] credentials = new String[2];
 
     public GoogleSearch() {

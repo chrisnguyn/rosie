@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CommandsHandler extends ListenerAdapter {
     private final Map<String, Command> commands = new HashMap<>(); // map command trigger --> object; get object then call execute
-    private final static String PREFIX = "r!"; // subject to change from one central point rather than multiple locations
+    private final static String PREFIX = "r!"; // r!help, r!ping, etc. to denote command calls
 
     public CommandsHandler() { // create objects of all command classes and store them into the map
         /* 1. HELP commands */
@@ -46,7 +46,7 @@ public class CommandsHandler extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        String message = event.getMessage().getContentRaw();
+        String message = event.getMessage().getContentRaw(); // on every message that comes into the server, log it to be processed
 
         if (event.getAuthor().isBot() || !message.startsWith(PREFIX)) {
             return; // if reached, no need to continue; we know they're either a bot or not trying to use a command...
@@ -54,7 +54,7 @@ public class CommandsHandler extends ListenerAdapter {
 
         String[] arguments = message.split(" "); // ...else, you know someone is trying to execute a command
         String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out prefix; "!help" becomes "help"
-        Command command = commands.get(name); // get the command object from the map, provided a command name
+        Command command = commands.get(name); // get the command object from the map, provided a command name; returns null if doesn't exist
 
         if (command != null) {
             command.execute(event, arguments); // if map doesn't provide null value, execute...

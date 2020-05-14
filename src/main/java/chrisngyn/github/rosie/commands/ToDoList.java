@@ -14,7 +14,7 @@ public class ToDoList extends Command {
             "> **!todo view** - view your current todo list.\n" +
             "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
             "> **!todo remove** [existing entry] - delete an entry from your to do list.";
-    private String error = "";
+    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in running the constructor
     private String url = "";
     private String user = "";
     private String password = "";
