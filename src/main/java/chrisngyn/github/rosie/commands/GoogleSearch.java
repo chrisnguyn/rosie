@@ -40,7 +40,7 @@ public class GoogleSearch extends Command {
         for (int i = 1; i < args.length; i++) { query += "+" + args[i]; } // query formatting; was broken before because I was appending with spaces oops
 
         try {
-            MyGETRequest(event, query);
+            sendGetRequest(event, query);
         } catch (Exception e) {
             System.err.println(e);
             event.getChannel().sendMessage("Error trying to execute your query. Please contact the bot creator.").queue();
@@ -48,7 +48,7 @@ public class GoogleSearch extends Command {
         }
     }
 
-    public void MyGETRequest(GuildMessageReceivedEvent event, String query) throws Exception {
+    public void sendGetRequest(GuildMessageReceivedEvent event, String query) throws Exception {
         URL urlForGetRequest = new URL("https://www.googleapis.com/customsearch/v1?q=" + query + "&cx=" + credentials[0] + "&num=3&key=" + credentials[1]);
         String readLine;
         HttpURLConnection connection = (HttpURLConnection) urlForGetRequest.openConnection();
@@ -71,7 +71,7 @@ public class GoogleSearch extends Command {
 
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject obj2 = (JSONObject) arr.get(i);
-                    event.getChannel().sendMessage((String) obj2.get("link")).queue();
+                    event.getChannel().sendMessage((String) obj2.get("link")).queue(); // from JSON object, parse and only return links
                 }
             } else {
                 event.getChannel().sendMessage("Sorry, I wasn't able to find any results for that query. :(").queue();

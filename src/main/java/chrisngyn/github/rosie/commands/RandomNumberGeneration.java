@@ -13,7 +13,8 @@ public class RandomNumberGeneration extends Command {
             "> **!random between** [number1] [number2] - get a number in that range (inclusive).";
     private final String[] value = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"}; // 0-13
     private final String[] suit = {"Clubs", "Spades", "Hearts", "Diamonds"}; // 0-3
-    Random random = new Random(); // doesn't need to be inside of execute; why create new object every call?
+
+    Random random = new Random(); // DON'T put this inside of .execute() - why create a new object on every call?
 
     public RandomNumberGeneration() {
         super("random");

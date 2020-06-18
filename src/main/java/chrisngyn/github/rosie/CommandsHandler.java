@@ -58,8 +58,8 @@ public class CommandsHandler extends ListenerAdapter {
 
         if (command != null) {
             command.execute(event, arguments); // if map doesn't provide null value, execute...
-        } else {
-            return; // ...else, Map.get() will return null if you get a key that isn't in the map; if we get null, return
         }
+
+        // ...else, Map.get() will return null if you get a key that isn't in the map; if we get null, return
     }
 }

@@ -16,9 +16,9 @@ public class Arithmetic extends Command {
         if (args.length != 4) {
             event.getChannel().sendMessage("Improper use of command. Please consult !help for documentation.").queue();
         } else {
-            Double num1 = Double.parseDouble(args[1]);
-            Double num2 = Double.parseDouble(args[3]);
-            Double ret = 0.0;
+            double num1 = Double.parseDouble(args[1]);
+            double num2 = Double.parseDouble(args[3]);
+            double ret;
 
             switch (args[2]) {
                 case "+":

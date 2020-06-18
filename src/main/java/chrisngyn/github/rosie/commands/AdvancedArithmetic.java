@@ -67,6 +67,6 @@ public class AdvancedArithmetic extends Command {
                 return;
         }
 
-        event.getChannel().sendMessage(ret);
+        event.getChannel().sendMessage(ret).queue();
     }
 }

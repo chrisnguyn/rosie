@@ -1,4 +1,5 @@
-import chrisngyn.github.rosie.CommandsHandler;
+package chrisngyn.github.rosie;
+
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import java.io.BufferedReader;
@@ -14,11 +15,10 @@ public class Main {
             String token = buffer.readLine();
             buffer.close();
             reader.close();
-
             JDA bot = new JDABuilder(token).build();
-            bot.addEventListener(new CommandsHandler());
+            bot.addEventListener(new CommandsHandler()); // one event listener > 20
         } catch (Exception e) {
-            System.err.println(e + "\n Error reading file and/or building the bot. Maybe your file name is off, or your token is invalid.");
+            System.err.println(e.getMessage() + "\n Error reading file and/or building the bot. Maybe your file name is off, or your token is invalid.");
         }
     }
 }

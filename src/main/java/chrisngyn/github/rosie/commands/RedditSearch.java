@@ -46,7 +46,7 @@ public class RedditSearch extends Command {
 
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
-        if (this.error.isEmpty() == false) {
+        if (!this.error.isEmpty()) {
             event.getChannel().sendMessage(error).queue(); // if it DID fail to create, our error string won't be empty.
             return;
         }

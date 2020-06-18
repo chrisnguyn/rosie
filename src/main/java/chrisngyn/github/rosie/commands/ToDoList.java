@@ -43,7 +43,7 @@ public class ToDoList extends Command {
             return;
         }
 
-        long user_id = event.getAuthor().getIdLong();
+        long userId = event.getAuthor().getIdLong();
         Date date = new Date(); // Sun Dec 22 18:53:32 EST 2019, footer
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); // 22/12/2019 19:21:42, how when_added is formatted
 
@@ -60,7 +60,7 @@ public class ToDoList extends Command {
 
                 try {
                     PreparedStatement pstmt = this.connection.prepareStatement(add_query);
-                    pstmt.setLong(1, user_id);
+                    pstmt.setLong(1, userId);
                     pstmt.setString(2, add_content);
                     pstmt.setString(3, formatter.format(date));
                     pstmt.setString(4, "No");
@@ -73,7 +73,7 @@ public class ToDoList extends Command {
                 break;
 
             case "view":
-                String view_query = String.format("SELECT featuretodo.user_query, featuretodo.when_added, featuretodo.is_completed FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", user_id);
+                String view_query = String.format("SELECT featuretodo.user_query, featuretodo.when_added, featuretodo.is_completed FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", userId);
 
                 try {
                     Statement stmt = connection.createStatement();
@@ -108,7 +108,7 @@ public class ToDoList extends Command {
 
                 try {
                     PreparedStatement pstmt = connection.prepareStatement(complete_query);
-                    pstmt.setLong(1, user_id);
+                    pstmt.setLong(1, userId);
                     pstmt.setString(2, complete_content);
                     pstmt.execute();
                     event.getChannel().sendMessage("Your entry has been updated in your to do list!").queue();
@@ -126,7 +126,7 @@ public class ToDoList extends Command {
 
                 try {
                     PreparedStatement pstmt = connection.prepareStatement(remove_query);
-                    pstmt.setLong(1, user_id);
+                    pstmt.setLong(1, userId);
                     pstmt.setString(2, remove_content);
                     pstmt.execute();
                     event.getChannel().sendMessage("Your entry has been deleted in your to do list!").queue();
@@ -138,18 +138,15 @@ public class ToDoList extends Command {
 
             default:
                 event.getChannel().sendMessage("Improper use of command. Please type **!help** for documentation.").queue();
-                return;
         }
     }
 
-    Connection createDBConnection(){
+    private Connection createDBConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver"); // com.mysql.jdbc.Driver is deprecated
-            Connection con = DriverManager.getConnection(this.url, this.user, this.password);
-            return con;
+            return DriverManager.getConnection(this.url, this.user, this.password);
         } catch (Exception e){
-            System.err.println(e);
-            System.err.println("Unable to create DB connection!");
+            System.err.println(e + "\n Unable to create DB connection!");
             return null;
         }
     }
