@@ -7,59 +7,47 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommandsHandler extends ListenerAdapter {
-    private final Map<String, Command> commands = new HashMap<>(); // map command trigger --> object; get object then call execute
-    private final static String PREFIX = "r!"; // r!help, r!ping, etc. to denote command calls
+    private final Map<String, Command> commands = new HashMap<>(); // map <cmd trigger word> to <object>
+    private final static String PREFIX = "r!";
 
-    public CommandsHandler() { // create objects of all command classes and store them into the map
-        /* 1. HELP commands */
+    public CommandsHandler() {
         Ping ping = new Ping();
         Help help = new Help();
         ServerInvite serverInvite = new ServerInvite();
         BotInvite botInvite = new BotInvite();
-        commands.put(ping.getName().toLowerCase(), ping);
-        commands.put(help.getName().toLowerCase(), help);
-        commands.put(serverInvite.getName().toLowerCase(), serverInvite);
-        commands.put(botInvite.getName().toLowerCase(), botInvite);
-
-        /* 2. ARITHMETIC */
         Arithmetic math = new Arithmetic();
-        AdvancedArithmetic advMath = new AdvancedArithmetic();
-        commands.put(math.getName().toLowerCase(), math);
-        commands.put(advMath.getName().toLowerCase(), advMath);
-
-        /* 3. RNG RESPONSES */
-        RandomNumberGeneration random = new RandomNumberGeneration();
+        AdvancedArithmetic advancedMath = new AdvancedArithmetic();
+        RandomNumberGeneration rng = new RandomNumberGeneration();
         EightBall eightBall = new EightBall();
-        commands.put(random.getName().toLowerCase(), random);
-        commands.put(eightBall.getName().toLowerCase(), eightBall);
-
-        /* 4. OTHER */
         Reminder remind = new Reminder();
         RedditSearch reddit = new RedditSearch();
         ToDoList todo = new ToDoList();
         GoogleSearch search = new GoogleSearch();
-        commands.put(remind.getName().toLowerCase(), remind);
-        commands.put(reddit.getName().toLowerCase(), reddit);
-        commands.put(todo.getName().toLowerCase(), todo);
-        commands.put(search.getName().toLowerCase(), search);
+        addCommands(ping, help, serverInvite, botInvite, math, advancedMath, rng, eightBall, remind, reddit, todo, search);
+    }
+
+    private void addCommands(Command... cmds) { // variable number of args - an array of type Command
+        for (Command cmd: cmds) {
+            this.commands.put(cmd.getName().toLowerCase(), cmd);
+        }
     }
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        String message = event.getMessage().getContentRaw(); // on every message that comes into the server, log it to be processed
+        String message = event.getMessage().getContentRaw(); // process all received messages
 
         if (event.getAuthor().isBot() || !message.startsWith(PREFIX)) {
-            return; // if reached, no need to continue; we know they're either a bot or not trying to use a command...
+            return;
         }
 
-        String[] arguments = message.split(" "); // ...else, you know someone is trying to execute a command
-        String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out prefix; "!help" becomes "help"
-        Command command = commands.get(name); // get the command object from the map, provided a command name; returns null if doesn't exist
+        String[] arguments = message.split(" ");
+        String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out prefix; "r!help" becomes "help"
+        Command cmd = commands.get(name); // get the command object from the map, provided a command name; returns null if doesn't exist
 
-        if (command != null) {
-            command.execute(event, arguments); // if map doesn't provide null value, execute...
+        if (cmd == null) {
+            event.getChannel().sendMessage("Unknown command. Type \"r!help\" to review available commands.").queue();
+        } else {
+            cmd.execute(event, arguments);
         }
-
-        // ...else, Map.get() will return null if you get a key that isn't in the map; if we get null, return
     }
 }

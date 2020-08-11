@@ -17,7 +17,7 @@ public class GoogleSearch extends Command {
     public GoogleSearch() {
         super("googlesearch");
         try {
-            FileReader reader = new FileReader("googlecredentials.txt");
+            FileReader reader = new FileReader("./credentials/googlecredentials.txt");
             BufferedReader buffer = new BufferedReader(reader);
             credentials[0] = buffer.readLine();
             credentials[1] = buffer.readLine();

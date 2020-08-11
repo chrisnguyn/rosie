@@ -23,7 +23,7 @@ public class ToDoList extends Command {
     public ToDoList() {
         super("todo");
         try {
-            FileReader reader = new FileReader("MySQLconnector.txt");
+            FileReader reader = new FileReader("./credentials/MySQLconnector.txt");
             BufferedReader buffer = new BufferedReader((reader));
             this.url = buffer.readLine();
             this.user = buffer.readLine();
@@ -68,6 +68,7 @@ public class ToDoList extends Command {
                     event.getChannel().sendMessage("Your entry has been added to your to do list!").queue();
                 } catch (Exception e) {
                     System.err.println("Error executing query for TODO_ADD.");
+                    System.err.println(e);
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
                 break;

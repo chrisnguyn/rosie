@@ -18,14 +18,14 @@ public class Help extends Command {
     GoogleSearch search = new GoogleSearch();
 
     public Help() {
-        super("help"); // when Help object is made, make call to super constructor and set the name of object to "help"
+        super("help");
     }
 
     @Override // if you aren't overriding something, you did something wrong and this would light up
     public void execute(GuildMessageReceivedEvent event, String[] args) {
         String msg1 =
                 "Hello and thank you for using me; I am a personal assistant Discord bot that aims to improve quality of life.\n\n" +
-                "**FEATURES LIST - LAST UPDATED ON APRIL 7TH, 2020**\n\n" +
+                "**FEATURES LIST - LAST UPDATED ON AUGUST 8TH, 2020**\n\n" +
                 "**HELP**\n" +
                 "> " + this.documentation           + "\n" +
                 "> " + ping.documentation           + "\n" +

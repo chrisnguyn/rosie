@@ -1,3 +1,4 @@
+credentials/
 discordtoken.txt
 googlecredentials.txt
 MySQLconnector.txt
@@ -5,3 +6,4 @@ redditcredentials.txt
 .idea/
 idea/
 target/
+.DS_Store

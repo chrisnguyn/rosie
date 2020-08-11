@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>rosie</groupId>
     <artifactId>rosie</artifactId>
@@ -16,33 +15,38 @@
             <version>3.8.0_436</version>
         </dependency>
 
-        <!-- JRAW - Java Reddit Wrapper, RedditSearch.java -->
+        <!-- JRAW, RedditSearch.java -->
         <dependency>
             <groupId>net.dean.jraw</groupId>
             <artifactId>JRAW</artifactId>
             <version>1.1.0</version>
         </dependency>
-
-        <!-- JSON; https://mvnrepository.com/artifact/org.json/json, GoogleSearch.java -->
+        
+        <!-- JSON, GoogleSearch.java -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20190722</version>
         </dependency>
 
-        <!-- JDBC: https://mvnrepository.com/artifact/mysql/mysql-connector-java (don't want to download a .jar file) -->
+        <!-- JDBC, ToDoList.java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.19</version> <!-- I spent two hours wondering why this wasn't resolving. I had auto import off... -->
+            <version>8.0.19</version>
         </dependency>
     </dependencies>
 
     <repositories>
         <repository>
+            <id>mvn</id>
+            <name>mvn-repository</name>
+            <url>https://mvnrepository.com/</url>
+        </repository>
+
+        <repository>
             <id>jcenter</id>
-            <name>jcenter-bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <url>https://jcenter.bintray.com/</url>
         </repository>
     </repositories>
 </project>

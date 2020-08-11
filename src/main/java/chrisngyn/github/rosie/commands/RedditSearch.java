@@ -18,7 +18,7 @@ import java.util.List;
 
 public class RedditSearch extends Command {
     protected String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
-    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in building the bot.
+    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in building the bot
     private Credentials oauth;
     private UserAgent user;
     private RedditClient client;
@@ -27,12 +27,12 @@ public class RedditSearch extends Command {
     public RedditSearch() {
         super("reddit");
         try {
-            FileReader reader = new FileReader("redditcredentials.txt");
+            FileReader reader = new FileReader("./credentials/redditcredentials.txt");
             BufferedReader buffer = new BufferedReader(reader);
-            this.credentials[0] = buffer.readLine(); // username
-            this.credentials[1] = buffer.readLine(); // password
-            this.credentials[2] = buffer.readLine(); // clientID
-            this.credentials[3] = buffer.readLine(); // clientSecret
+            this.credentials[0] = buffer.readLine();
+            this.credentials[1] = buffer.readLine();
+            this.credentials[2] = buffer.readLine();
+            this.credentials[3] = buffer.readLine();
             buffer.close();
             reader.close();
             this.oauth = Credentials.script(credentials[0], credentials[1], credentials[2], credentials[3]);
