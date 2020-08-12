@@ -1,15 +1,15 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ToDoList extends Command {
+    Dotenv env = Dotenv.load();
     protected String documentation = "**!todo add** - add an entry to your todo list.\n" +
             "> **!todo view** - view your current todo list.\n" +
             "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
@@ -23,14 +23,10 @@ public class ToDoList extends Command {
     public ToDoList() {
         super("todo");
         try {
-            FileReader reader = new FileReader("./credentials/MySQLconnector.txt");
-            BufferedReader buffer = new BufferedReader((reader));
-            this.url = buffer.readLine();
-            this.user = buffer.readLine();
-            this.password = buffer.readLine();
+            this.url = env.get("MYSQL_URL");
+            this.user = env.get("MYSQL_USER");
+            this.password = env.get("MYSQL_PW");
             this.connection = createDBConnection();
-            buffer.close();
-            reader.close();
         } catch (Exception e) {
             System.err.println("Error trying to build ToDoList instance.");
             this.error = "Error executing to do command.";
@@ -150,5 +146,21 @@ public class ToDoList extends Command {
             System.err.println(e + "\n Unable to create DB connection!");
             return null;
         }
+    }
+
+    private void todoAdd() {
+
+    }
+
+    private void todoView() {
+
+    }
+
+    private void todoComplete() {
+
+    }
+
+    private void todoRemove() {
+
     }
 }

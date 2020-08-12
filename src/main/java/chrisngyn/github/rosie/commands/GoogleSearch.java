@@ -1,6 +1,7 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,6 +11,7 @@ import java.net.URL;
 import org.json.*;
 
 public class GoogleSearch extends Command {
+    Dotenv env = Dotenv.load();
     protected String documentation = "**!googlesearch** [query] - responds with top three Google search results for that query.";
     private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in running the constructor
     private String[] credentials = new String[2];
@@ -19,8 +21,8 @@ public class GoogleSearch extends Command {
         try {
             FileReader reader = new FileReader("./credentials/googlecredentials.txt");
             BufferedReader buffer = new BufferedReader(reader);
-            credentials[0] = buffer.readLine();
-            credentials[1] = buffer.readLine();
+            credentials[0] = env.get("GCSE_ENGINE_ID");
+            credentials[1] = env.get("GCSE_API_KEY");
             buffer.close();
             reader.close();
         } catch (Exception e) {

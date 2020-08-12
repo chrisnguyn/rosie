@@ -1,9 +1,7 @@
-credentials/
-discordtoken.txt
-googlecredentials.txt
-MySQLconnector.txt
-redditcredentials.txt
+.env
+.DS_Store
+rosie.iml
 .idea/
 idea/
+.target/
 target/
-.DS_Store
