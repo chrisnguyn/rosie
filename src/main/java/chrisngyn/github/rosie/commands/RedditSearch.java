@@ -1,8 +1,11 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
+
+import java.util.List;
+
 import io.github.cdimascio.dotenv.Dotenv;
-import net.dean.jraw.RedditClient;
+
 import net.dean.jraw.http.OkHttpNetworkAdapter;
 import net.dean.jraw.http.UserAgent;
 import net.dean.jraw.models.Listing;
@@ -12,13 +15,14 @@ import net.dean.jraw.models.TimePeriod;
 import net.dean.jraw.oauth.Credentials;
 import net.dean.jraw.oauth.OAuthHelper;
 import net.dean.jraw.pagination.DefaultPaginator;
+import net.dean.jraw.RedditClient;
+
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import java.util.List;
 
 public class RedditSearch extends Command {
     Dotenv env = Dotenv.load();
-    protected String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
-    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in building the bot
+    protected String documentation = "**r!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
+    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in building
     private Credentials oauth;
     private UserAgent user;
     private RedditClient client;
@@ -26,13 +30,13 @@ public class RedditSearch extends Command {
     public RedditSearch() {
         super("reddit");
         try {
-            // JRAW quick start - https://mattbdean.gitbooks.io/jraw/content/quickstart.html
+            // more docs, JRAW quick start - https://mattbdean.gitbooks.io/jraw/content/quickstart.html
             this.oauth = Credentials.script(env.get("REDDIT_USER"), env.get("REDDIT_PW"), env.get("REDDIT_PUBLIC_KEY"), env.get("REDDIT_PRIVATE_KEY"));
             this.user = new UserAgent("bot", "Rosie", "1.0.0", "hemp3n");
             this.client = OAuthHelper.automatic(new OkHttpNetworkAdapter(user), oauth);
         } catch (Exception e) {
-            // if ANYTHING happens, update our error string
-            System.err.println("Error trying to build RedditSearch instance.");
+            // if anything goes wrong (i.e. exception thrown) then update our error string
+            System.err.println(e + "\n Error trying to build Reddit instance.");
             this.error = "Error executing the Reddit command. Please contact the bot creator.";
         }
     }
@@ -40,19 +44,19 @@ public class RedditSearch extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
         if (!this.error.isEmpty()) {
-            event.getChannel().sendMessage(error).queue(); // if it DID fail to create, our error string won't be empty.
+            event.getChannel().sendMessage(error).queue(); // if didn't fail to create, our error string won't be empty
             return;
         }
 
-        List<Submission> posts = getRedditPosts(args[1]); // get subreddit from user message
-        for (Submission post : posts) { // error checking with status code 403? 404?
+        List<Submission> posts = getRedditPosts(args[1]);
+        for (Submission post : posts) {
             String returnedPosts = "";
-            returnedPosts += post.getTitle() + "\n" + "http://reddit.com" + post.getPermalink() + "\n"; // build the string to be displayed as hyperlink in Discord
+            returnedPosts += post.getTitle() + "\n" + "http://reddit.com" + post.getPermalink() + "\n";
             event.getChannel().sendMessage(returnedPosts).queue();
         }
     }
 
-    public List<Submission> getRedditPosts(String subreddit) { // https://mattbdean.gitbooks.io/jraw/pagination.html
+    public List<Submission> getRedditPosts(String subreddit) {
         DefaultPaginator<Submission> paginator = client.subreddit(subreddit).posts()
                 .limit(3)
                 .sorting(SubredditSort.HOT)
@@ -63,6 +67,7 @@ public class RedditSearch extends Command {
     }
 }
 
+// more docs: https://mattbdean.gitbooks.io/jraw/pagination.html
 // Functions from JRAW documentation:
 // getTitle - title of post
 // getPermalink - link to the post. Need to append it to "htttp://reddit.com" first if you want it to appear as a hyperlink in Discord
