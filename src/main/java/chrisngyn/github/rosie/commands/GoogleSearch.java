@@ -19,12 +19,8 @@ public class GoogleSearch extends Command {
     public GoogleSearch() {
         super("googlesearch");
         try {
-            FileReader reader = new FileReader("./credentials/googlecredentials.txt");
-            BufferedReader buffer = new BufferedReader(reader);
             credentials[0] = env.get("GCSE_ENGINE_ID");
             credentials[1] = env.get("GCSE_API_KEY");
-            buffer.close();
-            reader.close();
         } catch (Exception e) {
             System.err.println("Error trying to build GoogleSearch instance.");
             this.error = "Error executing the Google search command. Please contact the bot creator.";
