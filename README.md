@@ -48,7 +48,7 @@ Create a `.env` file and provide the following keys:
 `DISCORD_TOKEN=replace_me`  
   
 [Get your Reddit keys](https://www.reddit.com/prefs/apps)  
-`REDDIT_USER=replace_me` 
+`REDDIT_USER=replace_me`  
 `REDDIT_PW=replace_me`  
 `REDDIT_PUBLIC_KEY=replace_me`  
 `REDDIT_PRIVATE_KEY=replace_me`  
