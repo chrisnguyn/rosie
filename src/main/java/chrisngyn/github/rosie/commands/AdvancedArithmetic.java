@@ -1,20 +1,22 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
+
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class AdvancedArithmetic extends Command {
-    protected String documentation = "**!moremath quadratic** [number1] [number2] [number3] - quadratic formula, enter values to get the roots of an equation. \n" +
-            "> **!moremath pythagorean** [number1] [number2] - pythagorean theorem, enter two side lengths to get the hypotenuse. \n" +
-            "> **!moremath** [**sin**, **cos**, **tan**, **c2f**, **f2c**] [number] - sin, cos, tan, celsius to fahrenheit, and fahrenheit to celsius conversions.";
+    protected String documentation = "**r!moremath quadratic** [number1] [number2] [number3] - quadratic formula, enter values to get the roots of an equation. \n" +
+            "> **r!moremath pythagorean** [number1] [number2] - pythagorean theorem, enter two side lengths to get the hypotenuse. \n" +
+            "> **r!moremath** [**sin**, **cos**, **tan**, **c2f**, **f2c**] [number] - sin, cos, tan, celsius to fahrenheit, and fahrenheit to celsius conversions.";
 
     public AdvancedArithmetic() {
         super("moremath");
     }
 
     @Override
-    public void execute(GuildMessageReceivedEvent event, String[] args) { // error checking to ensure they're using command properly?
+    public void execute(GuildMessageReceivedEvent event, String[] args) {
         String ret = "";
+
         switch (args[1]) {
             case "quadratic":
                 double a = Double.parseDouble(args[2]);
@@ -63,10 +65,10 @@ public class AdvancedArithmetic extends Command {
                 break;
 
             default:
-                event.getChannel().sendMessage("Unknown operation. Please consult !help for documentation.").queue();
+                event.getChannel().sendMessage("Improper use of command. Please consult \"**r!help**\" for documentation.").queue();
                 return;
         }
 
-        event.getChannel().sendMessage(ret).queue();
+        event.getChannel().sendMessage("Result: " + "**" + ret + "**").queue();
     }
 }

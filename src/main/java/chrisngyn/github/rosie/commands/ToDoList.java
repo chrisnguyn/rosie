@@ -1,20 +1,23 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-import io.github.cdimascio.dotenv.Dotenv;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+
 public class ToDoList extends Command {
     Dotenv env = Dotenv.load();
-    protected String documentation = "**!todo add** - add an entry to your todo list.\n" +
-            "> **!todo view** - view your current todo list.\n" +
-            "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
-            "> **!todo remove** [existing entry] - delete an entry from your to do list.";
-    private String error = ""; // in our .execute(), if this is EMPTY, we're good. else, there was an error in running the constructor
+    protected String documentation = "**r!todo add** - add an entry to your todo list.\n" +
+            "> **r!todo view** - view your current todo list.\n" +
+            "> **r!todo complete** [existing entry] - mark an entry as completed.\n" +
+            "> **r!todo remove** [existing entry] - delete an entry from your to do list.";
+    private String error = "";
     private String url = "";
     private String user = "";
     private String password = "";
@@ -28,8 +31,8 @@ public class ToDoList extends Command {
             this.password = env.get("MYSQL_PW");
             this.connection = createDBConnection();
         } catch (Exception e) {
-            System.err.println("Error trying to build ToDoList instance.");
-            this.error = "Error executing to do command.";
+            System.err.println(e + "\n Error trying to build ToDoList instance.");
+            this.error = "Error executing ToDo command. Please contact bot creator.";
         }
     }
 
@@ -40,11 +43,11 @@ public class ToDoList extends Command {
         }
 
         long userId = event.getAuthor().getIdLong();
-        Date date = new Date(); // Sun Dec 22 18:53:32 EST 2019, footer
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); // 22/12/2019 19:21:42, how when_added is formatted
+        Date date = new Date(); // sample Sun Dec 22 18:53:32 EST 2019
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); // sample 22/12/2019 19:21:42
 
         if (args.length == 1) {
-            event.getChannel().sendMessage("Improper use of command. Please type !help for documentation.").queue();
+            event.getChannel().sendMessage("Improper use of command. Please consult \"**r!help**\" for documentation.").queue();
             return;
         }
 
