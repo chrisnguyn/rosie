@@ -32,7 +32,7 @@ public class ToDoList extends Command {
             this.connection = createDBConnection();
         } catch (Exception e) {
             System.err.println(e + "\n Error trying to build ToDoList instance.");
-            this.error = "Error executing ToDo command. Please contact bot creator.";
+            this.error = "Error executing todo command. Please contact bot creator.";
         }
     }
 
@@ -53,52 +53,27 @@ public class ToDoList extends Command {
 
         switch (args[1]) {
             case "add":
-                String add_content = "";
-                for (int i = 2; i < args.length; i++) { add_content += args[i] + " "; }
-                String add_query = "INSERT INTO rosie.featuretodo(user_id, user_query, when_added, is_completed) values (?, ?, ?, ?)";
+                String content = "";
+                for (int i = 2; i < args.length; i++) { content += args[i] + " "; }
 
-                try {
-                    PreparedStatement pstmt = this.connection.prepareStatement(add_query);
-                    pstmt.setLong(1, userId);
-                    pstmt.setString(2, add_content);
-                    pstmt.setString(3, formatter.format(date));
-                    pstmt.setString(4, "No");
-                    pstmt.execute();
+                if (todoAdd(content, userId, date, formatter) == 0) {
                     event.getChannel().sendMessage("Your entry has been added to your to do list!").queue();
-                } catch (Exception e) {
-                    System.err.println("Error executing query for TODO_ADD.");
-                    System.err.println(e);
+                } else {
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
+
                 break;
 
             case "view":
-                String view_query = String.format("SELECT featuretodo.user_query, featuretodo.when_added, featuretodo.is_completed FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", userId);
+                String author = event.getAuthor().getName();
+                EmbedBuilder response = todoView(author, userId, date, formatter);
 
-                try {
-                    Statement stmt = connection.createStatement();
-                    ResultSet rs = stmt.executeQuery(view_query);
-                    String entries = "";
-                    String added = "";
-                    String completed = "";
-                    while (rs.next()) {
-                        entries += rs.getString("featuretodo.user_query") + "\n\n";
-                        added += rs.getString("featuretodo.when_added") + "\n\n";
-                        completed += rs.getString("featuretodo.is_completed") + "\n\n";
-                    }
-                    EmbedBuilder eb = new EmbedBuilder();
-                    eb.setTitle(event.getAuthor().getName() + "'s to do list:");
-                    eb.addField("Your Entries", entries, true);
-                    eb.addField("Added When", added, true);
-                    eb.addField("Is Completed", completed, true);
-                    // eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png"); LOL
-                    eb.setColor(9168790); // or Color.(anything), or www.shodor.org/stella2java/rgbint.html
-                    eb.setFooter("Request was made at: " + date, null); // date or formatter.format(date);
-                    event.getChannel().sendMessage(eb.build()).queue();
-                } catch (Exception e) {
-                    System.err.println("Error executing query for TODO_VIEW.");
+                if (response == null) {
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
+                } else {
+                    event.getChannel().sendMessage(response.build()).queue();
                 }
+
                 break;
 
             case "complete":
@@ -151,12 +126,54 @@ public class ToDoList extends Command {
         }
     }
 
-    private void todoAdd() {
+    private int todoAdd(String content, long userId, Date date, SimpleDateFormat formatter) { // return 0 if successful, -1 otherwise
+        String query = "INSERT INTO rosie.featuretodo(user_id, user_query, when_added, is_completed) values (?, ?, ?, ?)";
 
+        try {
+            PreparedStatement pstmt = this.connection.prepareStatement(query);
+            pstmt.setLong(1, userId);
+            pstmt.setString(2, content);
+            pstmt.setString(3, formatter.format(date));
+            pstmt.setString(4, "No");
+            pstmt.execute();
+            return 0;
+        } catch (Exception e) {
+            System.err.println("Error executing query for todoAdd.");
+            System.err.println(e);
+            return -1;
+        }
     }
 
-    private void todoView() {
+    private EmbedBuilder todoView(String author, long userId, Date date, SimpleDateFormat formatter) {
+        String query = String.format("SELECT featuretodo.user_query, featuretodo.when_added, featuretodo.is_completed FROM rosie.featuretodo WHERE featuretodo.user_id = (%d)", userId);
 
+        try {
+            Statement stmt = this.connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            String entries = "";
+            String added = "";
+            String completed = "";
+
+            while (rs.next()) {
+                entries += rs.getString("featuretodo.user_query") + "\n\n";
+                added += rs.getString("featuretodo.when_added") + "\n\n";
+                completed += rs.getString("featuretodo.is_completed") + "\n\n";
+            }
+
+            EmbedBuilder eb = new EmbedBuilder();
+            eb.setTitle(author + "'s to do list:");
+            eb.addField("Your Entries", entries, true);
+            eb.addField("Added When", added, true);
+            eb.addField("Is Completed", completed, true);
+            eb.setThumbnail("https://www.calltrackingmetrics.com/wp-content/uploads/2017/11/shopify_glyph.png");
+            eb.setColor(9168790); // or Color.(anything), or www.shodor.org/stella2java/rgbint.html
+            eb.setFooter("Request was made at: " + date, null); // date or formatter.format(date);
+            return eb;
+        } catch (Exception e) {
+            System.err.println("Error executing query for todoView.");
+            System.err.println(e);
+            return null;
+        }
     }
 
     private void todoComplete() {
