@@ -53,10 +53,10 @@ public class ToDoList extends Command {
 
         switch (args[1]) {
             case "add":
-                String content = "";
-                for (int i = 2; i < args.length; i++) { content += args[i] + " "; }
+                String addContent = "";
+                for (int i = 2; i < args.length; i++) { addContent += args[i] + " "; }
 
-                if (todoAdd(content, userId, date, formatter) == 0) {
+                if (todoAdd(addContent, userId, date, formatter) == 0) {
                     event.getChannel().sendMessage("Your entry has been added to your to do list!").queue();
                 } else {
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
@@ -76,53 +76,32 @@ public class ToDoList extends Command {
 
                 break;
 
-            case "complete":
-                String complete_content = "";
-                for (int i = 2; i < args.length; i++) { complete_content += args[i] + " "; }
-                String complete_query = "UPDATE rosie.featuretodo SET featuretodo.is_completed = \"Yes\" WHERE featuretodo.user_id = ? AND user_query = ?";
+            case "complete": // if you try to 'complete' something that doesn't exist it'll still give confirmation :(
+                String completeContent = "";
+                for (int i = 2; i < args.length; i++) { completeContent += args[i] + " "; }
 
-                try {
-                    PreparedStatement pstmt = connection.prepareStatement(complete_query);
-                    pstmt.setLong(1, userId);
-                    pstmt.setString(2, complete_content);
-                    pstmt.execute();
+                if (todoComplete(completeContent, userId) == 0) {
                     event.getChannel().sendMessage("Your entry has been updated in your to do list!").queue();
-                } catch (Exception e) {
-                    System.err.println("Error executing query for TODO_COMPLETE.");
+                } else {
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
+
                 break;
 
-            // if user tries to delete an entry that doesn't exist, it'll still give confirmation; need a way to check first if it exists.
-            case "remove":
-                String remove_content = "";
-                for (int i = 2; i < args.length; i++) { remove_content += args[i] + " "; }
-                String remove_query = "DELETE FROM rosie.featuretodo WHERE featuretodo.user_id = ? AND user_query = ?";
+            case "remove": // if you try to 'remove' something that doesn't exist it'll still give confirmation :(
+                String removeContent = "";
+                for (int i = 2; i < args.length; i++) { removeContent += args[i] + " "; }
 
-                try {
-                    PreparedStatement pstmt = connection.prepareStatement(remove_query);
-                    pstmt.setLong(1, userId);
-                    pstmt.setString(2, remove_content);
-                    pstmt.execute();
+                if (todoRemove(removeContent, userId) == 0) {
                     event.getChannel().sendMessage("Your entry has been deleted in your to do list!").queue();
-                } catch (Exception e) {
-                    System.err.println("Error executing query for TODO_REMOVE!");
+                } else {
                     event.getChannel().sendMessage("Sorry, but something went wrong. Please alert the bot creator!").queue();
                 }
+
                 break;
 
             default:
                 event.getChannel().sendMessage("Improper use of command. Please type **!help** for documentation.").queue();
-        }
-    }
-
-    private Connection createDBConnection(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // com.mysql.jdbc.Driver is deprecated
-            return DriverManager.getConnection(this.url, this.user, this.password);
-        } catch (Exception e){
-            System.err.println(e + "\n Unable to create DB connection!");
-            return null;
         }
     }
 
@@ -138,8 +117,7 @@ public class ToDoList extends Command {
             pstmt.execute();
             return 0;
         } catch (Exception e) {
-            System.err.println("Error executing query for todoAdd.");
-            System.err.println(e);
+            System.err.println(e + "\n Error executing query for todoAdd.");
             return -1;
         }
     }
@@ -170,17 +148,47 @@ public class ToDoList extends Command {
             eb.setFooter("Request was made at: " + date, null); // date or formatter.format(date);
             return eb;
         } catch (Exception e) {
-            System.err.println("Error executing query for todoView.");
-            System.err.println(e);
+            System.err.println(e + "\n Error executing query for todoView.");
             return null;
         }
     }
 
-    private void todoComplete() {
+    private int todoComplete(String content, long userId) {
+        String query = "UPDATE rosie.featuretodo SET featuretodo.is_completed = \"Yes\" WHERE featuretodo.user_id = ? AND user_query = ?";
 
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setLong(1, userId);
+            pstmt.setString(2, content);
+            pstmt.execute();
+            return 0;
+        } catch (Exception e) {
+            System.err.println(e + "\n Error executing query for todoComplete.");
+            return -1;
+        }
     }
 
-    private void todoRemove() {
+    private int todoRemove(String content, long userId) {
+        String query = "DELETE FROM rosie.featuretodo WHERE featuretodo.user_id = ? AND user_query = ?";
 
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setLong(1, userId);
+            pstmt.setString(2, content);
+            pstmt.execute();
+            return 0;
+        } catch (Exception e) {
+            System.err.println(e + "\n Error executing query for todoRemove.");
+            return -1;
+        }
+    }
+
+    private Connection createDBConnection(){
+        try {
+            return DriverManager.getConnection(this.url, this.user, this.password);
+        } catch (Exception e){
+            System.err.println(e + "\n Unable to create DB connection!");
+            return null;
+        }
     }
 }
