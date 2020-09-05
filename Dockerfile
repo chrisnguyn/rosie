@@ -1,3 +1,5 @@
 FROM openjdk:8
-ADD target/rosie-1.0-jar-with-dependencies.jar rosie-1.0-jar-with-dependencies.jar
-ENTRYPOINT ["java", "-jar", "target/rosie-1.0-jar-with-dependencies.jar"]
+WORKDIR /usr/src/app
+COPY rosie-1.0-jar-with-dependencies.jar .
+COPY .env .
+ENTRYPOINT ["java", "-jar", "rosie-1.0-jar-with-dependencies.jar"]
