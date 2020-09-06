@@ -42,7 +42,7 @@ Here's a short GIF demoing some of Rosie's features:
 + **r!todo remove** [existing entry] - delete an entry from your to do list.
 
 ## Configuration
-1. Create a `.env` file and provide the following keys:  
+1. Go to `.env-sample`, provide the following keys, and rename file to `.env`:  
   
     [Get your Discord token](https://discord.com/developers/applications)  
     `DISCORD_TOKEN=replace_me`  
@@ -62,7 +62,7 @@ Here's a short GIF demoing some of Rosie's features:
     `MYSQL_USER=replace_me`  
     `MYSQL_PW=replace_me`
 
-2. Go into `docker-compose-sample.yml`, replace lines 11 and 12 with your respective DB name and password, rename file to `docker-compose.yml`
+2. Go to `docker-compose-sample.yml`, replace lines 11 and 12 with your respective DB name and password, and rename file to `docker-compose.yml`
 
 3. `docker build -t rosiebot .`
 
