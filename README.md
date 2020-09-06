@@ -2,7 +2,7 @@
 A [Discord](https://discord.com) bot with ~20 features that serves as a centralized platform to perform many actions in one place - no more opening 50 Google Chrome tabs and flipping through all of them!  
     
 Here's a short GIF demoing some of Rosie's features:
-<p align="center"><img src="https://github.com/chrisngyn/Rosie/blob/master/rosie.gif" width="80%"></p>
+<p align="center"><img src="https://github.com/chrisngyn/Rosie/blob/master/media/rosie.gif" width="80%"></p>
 
 ## Commands List (last updated 08/12/2020)
 
@@ -42,22 +42,28 @@ Here's a short GIF demoing some of Rosie's features:
 + **r!todo remove** [existing entry] - delete an entry from your to do list.
 
 ## Configuration
-Create a `.env` file and provide the following keys:  
+1. Create a `.env` file and provide the following keys:  
   
-[Get your Discord token](https://discord.com/developers/applications)  
-`DISCORD_TOKEN=replace_me`  
-  
-[Get your Reddit keys](https://www.reddit.com/prefs/apps)  
-`REDDIT_USER=replace_me`  
-`REDDIT_PW=replace_me`  
-`REDDIT_PUBLIC_KEY=replace_me`  
-`REDDIT_PRIVATE_KEY=replace_me`  
-  
-[Get your Google Custom Search keys](https://developers.google.com/custom-search/v1/introduction)  
-`GCSE_ENGINE_ID=replace_me`  
-`GCSE_API_KEY=replace_me`  
-  
-[Install MySQL](https://dev.mysql.com/downloads/installer/)  
-`MYSQL_URL=replace_me`  
-`MYSQL_USER=replace_me`  
-`MYSQL_PW=replace_me`
+    [Get your Discord token](https://discord.com/developers/applications)  
+    `DISCORD_TOKEN=replace_me`  
+      
+    [Get your Reddit keys](https://www.reddit.com/prefs/apps)  
+    `REDDIT_USER=replace_me`  
+    `REDDIT_PW=replace_me`  
+    `REDDIT_PUBLIC_KEY=replace_me`  
+    `REDDIT_PRIVATE_KEY=replace_me`  
+      
+    [Get your Google Custom Search keys](https://developers.google.com/custom-search/v1/introduction)  
+    `GCSE_ENGINE_ID=replace_me`  
+    `GCSE_API_KEY=replace_me`  
+      
+    [Install MySQL](https://dev.mysql.com/downloads/installer/)  
+    `MYSQL_URL=replace_me`  
+    `MYSQL_USER=replace_me`  
+    `MYSQL_PW=replace_me`
+
+2. Go into `docker-compose-sample.yml`, replace lines 11 and 12 with your respective DB name and password, rename file to `docker-compose.yml`
+
+3. `docker build -t rosiebot .`
+
+4. `docker-compose up -d`
