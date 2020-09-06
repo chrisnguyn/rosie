@@ -62,7 +62,7 @@ Here's a short GIF demoing some of Rosie's features:
     `MYSQL_USER=replace_me`  
     `MYSQL_PW=replace_me`
 
-2. Go into `docker-compose.yml` and replace lines 11 and 12 with your respective DB name and password
+2. Go into `docker-compose-sample.yml`, replace lines 11 and 12 with your respective DB name and password, rename file to `docker-compose.yml`
 
 3. `docker build -t rosiebot .`
 
