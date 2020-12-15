@@ -1,5 +1,5 @@
 # Rosie
-A [Discord](https://discord.com) bot with ~20 features that serves as a centralized platform to perform many actions in one place - no more opening 50 Google Chrome tabs and flipping through all of them!  
+A [Discord](https://discord.com) bot with ~20 features that serves as a centralized platform to perform many actions in one place, from retrieving Google search results to Reddit posts, no more flipping through 50 tabs and applications to do what you want!
     
 Here's a short GIF demoing some of Rosie's features:
 <p align="center"><img src="https://github.com/chrisngyn/Rosie/blob/master/media/rosie.gif" width="80%"></p>
