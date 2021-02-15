@@ -73,7 +73,7 @@ Here's a short demo some of Rosie's features:
 ## Future Improvements / Roadmap
 1. Need to add a lot more error handling.
 
-2. More features (currently looking into incorporating a Google Calendar feature into the bot and playing audio).
+2. More features (currently looking into incorporating Google Calendar, money conversion, and tweet grabbing commands).
 
 3. Cleaning up the codebase significantly - namely abstracting a lot of the code in various commands to helper functions / separate files, for example in the `ToDoList.java` command, having a separation of concern for the database connection logic.
 
