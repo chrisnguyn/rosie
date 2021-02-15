@@ -1,7 +1,7 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Arithmetic extends Command {
     protected String documentation = "**r!calculate** [number1] [**+**, **-**, **\\***, **/**, **%**, **^**] [number2] - basic computation.";

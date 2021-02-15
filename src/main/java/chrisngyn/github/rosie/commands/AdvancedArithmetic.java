@@ -1,7 +1,7 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class AdvancedArithmetic extends Command {
     protected String documentation = "**r!moremath quadratic** [number1] [number2] [number3] - quadratic formula, enter values to get the roots of an equation. \n" +

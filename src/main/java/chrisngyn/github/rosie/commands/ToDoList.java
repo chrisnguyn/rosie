@@ -5,8 +5,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import io.github.cdimascio.dotenv.Dotenv;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class ToDoList extends Command {
     Dotenv env = Dotenv.load();

@@ -1,7 +1,7 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Ping extends Command {
     protected String documentation = "**r!ping** - basic command to test to see if the bot is up and running.";

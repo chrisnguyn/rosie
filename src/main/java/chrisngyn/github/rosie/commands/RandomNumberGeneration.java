@@ -3,7 +3,7 @@ package chrisngyn.github.rosie.commands;
 import chrisngyn.github.rosie.Command;
 import java.util.Arrays;
 import java.util.Random;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class RandomNumberGeneration extends Command {
     Random randNumGen = new Random();

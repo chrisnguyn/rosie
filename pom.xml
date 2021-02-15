@@ -13,7 +13,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.8.0_436</version>
+            <version>4.2.0_168</version>
         </dependency>
 
         <!-- JRAW, RedditSearch.java -->
@@ -91,6 +91,7 @@
 
         <repository>
             <id>jcenter</id>
+            <name>jcenter-bintray</name>
             <url>https://jcenter.bintray.com/</url>
         </repository>
     </repositories>

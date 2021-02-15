@@ -3,8 +3,8 @@ package chrisngyn.github.rosie;
 import chrisngyn.github.rosie.commands.*;
 import java.util.Map;
 import java.util.HashMap;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class CommandsHandler extends ListenerAdapter {
     private final Map<String, Command> commands = new HashMap<>();
@@ -24,7 +24,7 @@ public class CommandsHandler extends ListenerAdapter {
         GoogleSearch search = new GoogleSearch();
         ToDoList todo = new ToDoList();
         addCommands(help, ping, botInvite, serverInvite, math, advancedMath, eightBall, remind, rng, reddit, search, todo);
-        System.out.println("Successfully logged in - ready to go!");
+        System.out.println("She's alive...she's alive!!!");
     }
 
     private void addCommands(Command... cmds) {

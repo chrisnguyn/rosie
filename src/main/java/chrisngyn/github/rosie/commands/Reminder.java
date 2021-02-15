@@ -4,8 +4,8 @@ import chrisngyn.github.rosie.Command;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.*;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Reminder extends Command {
     protected String documentation = "**r!remindme** [number] [s, seconds, m, minutes, h, hours] [reminder] - set a reminder; Rosie will send you a direct message reminding you when time is up.";
