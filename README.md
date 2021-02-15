@@ -1,4 +1,4 @@
-# Rosie <img src="https://github.com/chrisngyn/chrisngyn/blob/master/Hi.gif" width="40px">
+# Rosie <img src="https://github.com/chrisngyn/chrisngyn/blob/master/Hi.gif" width="35px">
 
 ## About
 Rosie is a [Discord](https://discord.com) bot with ~20 features that serves as a centralized platform to perform many actions in one place - so long ago are the days where we had to open many Google Chrome tabs to do what we wanted.
