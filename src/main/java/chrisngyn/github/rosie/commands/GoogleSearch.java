@@ -1,16 +1,12 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
 import io.github.cdimascio.dotenv.Dotenv;
-
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-
 import org.json.*;
 
 public class GoogleSearch extends Command {
@@ -38,7 +34,7 @@ public class GoogleSearch extends Command {
         }
 
         String query = "";
-        for (int i = 1; i < args.length; i++) { query += "+" + args[i]; } // structure query to account for spaces
+        for (int i = 1; i < args.length; i++) { query += "+" + args[i]; }  // structure query to account for spaces
 
         try {
             sendGETRequest(event, query);
@@ -82,10 +78,3 @@ public class GoogleSearch extends Command {
         }
     }
 }
-
-// JSONObject obj = new JSONObject(" ... ");
-// String pageName = obj.getJSONObject("pageInfo").getString("pageName");
-// JSONArray arr = obj.getJSONArray("posts");
-// for (int i = 0; i < arr.length(); i++) {
-//     String post_id = arr.getJSONObject(i).getString("post_id");
-// }

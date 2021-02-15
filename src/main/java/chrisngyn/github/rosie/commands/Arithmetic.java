@@ -1,11 +1,9 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class Arithmetic extends Command {
-    // "\*" is not an escape character in Java, so we do \\* to get \* to get * ...get it?
     protected String documentation = "**r!calculate** [number1] [**+**, **-**, **\\***, **/**, **%**, **^**] [number2] - basic computation.";
 
     public Arithmetic() {
@@ -15,43 +13,37 @@ public class Arithmetic extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
         if (args.length != 4) {
-            event.getChannel().sendMessage("Improper use of command. Please consult \"**r!help**\" for documentation.").queue();
+            event.getChannel().sendMessage("Improper use of command. Please use \"**r!help**\" for documentation.").queue();
         } else {
             double num1 = Double.parseDouble(args[1]);
             double num2 = Double.parseDouble(args[3]);
-            double ret;
+            double result;
 
             switch (args[2]) {
                 case "+":
-                    ret = num1 + num2;
+                    result = num1 + num2;
                     break;
-
                 case "-":
-                    ret = num1 - num2;
+                    result = num1 - num2;
                     break;
-
                 case "*":
-                    ret = num1 * num2;
+                    result = num1 * num2;
                     break;
-
                 case "/":
-                    ret = num1 / num2;
+                    result = num1 / num2;
                     break;
-
                 case "%":
-                    ret = num1 % num2;
+                    result = num1 % num2;
                     break;
-
                 case "^":
-                    ret = Math.pow(num1, num2);
+                    result = Math.pow(num1, num2);
                     break;
-
                 default:
                     event.getChannel().sendMessage("Improper use of command. Please consult \"**r!help**\" for documentation.").queue();
                     return;
             }
 
-            event.getChannel().sendMessage("Result: " + "**" + ret + "**").queue();
+            event.getChannel().sendMessage("Result: " + "**" + result + "**").queue();
         }
     }
 }

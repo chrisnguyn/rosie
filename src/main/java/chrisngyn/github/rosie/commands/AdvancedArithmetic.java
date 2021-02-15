@@ -1,7 +1,6 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
 public class AdvancedArithmetic extends Command {
@@ -15,7 +14,7 @@ public class AdvancedArithmetic extends Command {
 
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
-        String ret = "";
+        String result = "";
 
         switch (args[1]) {
             case "quadratic":
@@ -26,49 +25,42 @@ public class AdvancedArithmetic extends Command {
                 if (discriminant > 0) {
                     double root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
                     double root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-                    ret = "As your discriminant is positive, you have two roots. Your roots are: **" + root1 + "** and **" + root2 + "**";
+                    result = "As your discriminant is positive, you have two roots. Your roots are: **" + root1 + "** and **" + root2 + "**";
                 } else if (discriminant == 0) {
                     double root = (-b / (2 * a));
-                    ret = "As your discriminant is zero, you have one root. Your root is: **" + root + "**";
+                    result = "As your discriminant is zero, you have one root. Your root is: **" + root + "**";
                 } else {
-                    ret = "As your discriminant is negative, you have zero real roots.";
+                    result = "As your discriminant is negative, you have zero real roots.";
                 }
                 break;
-
             case "pythagorean":
                 double num1 = Double.parseDouble(args[2]);
                 double num2 = Double.parseDouble(args[3]);
                 double hypotenuse = (Math.sqrt((Math.pow(num1, 2) + Math.pow(num2, 2))));
-                ret = "The hypontenuse of the two side length you have provided is: **" + hypotenuse + "**";
+                result = "The hypontenuse of the two side length you have provided is: **" + hypotenuse + "**";
                 break;
-
             case "sin":
-                ret = "Result: **" + Math.sin(Integer.parseInt(args[2])) + "**";
+                result = "Result: **" + Math.sin(Integer.parseInt(args[2])) + "**";
                 break;
-
             case "cos":
-                ret = "Result: **" + Math.cos(Integer.parseInt(args[2])) + "**";
+                result = "Result: **" + Math.cos(Integer.parseInt(args[2])) + "**";
                 break;
-
             case "tan":
-                ret = "Result: **" + Math.tan(Integer.parseInt(args[2])) + "**";
+                result = "Result: **" + Math.tan(Integer.parseInt(args[2])) + "**";
                 break;
-
             case "c2f":
                 double c2f = ((Double.parseDouble(args[2]) * 9) / 5) + 32;
-                ret = args[2] + " degrees Celsius to Fahrenheit is: **" + c2f + "**";
+                result = args[2] + " degrees Celsius to Fahrenheit is: **" + c2f + "**";
                 break;
-
             case "f2c":
                 double f2c = ((Double.parseDouble(args[2]) - 32) * 5) / 9;
-                ret = args[2] + " degrees Fahrenheit to Celsius is: **" + f2c + "**";
+                result = args[2] + " degrees Fahrenheit to Celsius is: **" + f2c + "**";
                 break;
-
             default:
                 event.getChannel().sendMessage("Improper use of command. Please consult \"**r!help**\" for documentation.").queue();
                 return;
         }
 
-        event.getChannel().sendMessage("Result: " + "**" + ret + "**").queue();
+        event.getChannel().sendMessage("Result: " + "**" + result + "**").queue();
     }
 }

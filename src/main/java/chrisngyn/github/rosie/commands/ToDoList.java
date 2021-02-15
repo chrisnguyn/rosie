@@ -1,13 +1,10 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import io.github.cdimascio.dotenv.Dotenv;
-
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 

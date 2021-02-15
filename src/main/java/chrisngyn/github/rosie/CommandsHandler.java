@@ -1,18 +1,16 @@
 package chrisngyn.github.rosie;
 
 import chrisngyn.github.rosie.commands.*;
-
 import java.util.Map;
 import java.util.HashMap;
-
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 public class CommandsHandler extends ListenerAdapter {
-    private final Map<String, Command> commands = new HashMap<>(); // map <trigger word: command object>
+    private final Map<String, Command> commands = new HashMap<>();
     private final static String PREFIX = "r!";
 
-    public CommandsHandler() {
+    public CommandsHandler() { // create all instances of the commands and put into our commands mapping
         Help help = new Help();
         Ping ping = new Ping();
         BotInvite botInvite = new BotInvite();
@@ -26,29 +24,31 @@ public class CommandsHandler extends ListenerAdapter {
         GoogleSearch search = new GoogleSearch();
         ToDoList todo = new ToDoList();
         addCommands(help, ping, botInvite, serverInvite, math, advancedMath, eightBall, remind, rng, reddit, search, todo);
-        System.out.println("Successfully logged in. All objects created and added to dictionary. Ready to go!");
+        System.out.println("Successfully logged in - ready to go!");
     }
 
-    private void addCommands(Command... cmds) { // variable number of args; an array of type Command
+    private void addCommands(Command... cmds) {
         for (Command cmd: cmds) {
             this.commands.put(cmd.getName().toLowerCase(), cmd);
         }
     }
 
-    @Override // if you aren't overriding something, you did something wrong and this would light up; this is a 'check'
+    @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        String message = event.getMessage().getContentRaw(); // process all received messages
+        String message = event.getMessage().getContentRaw();  // process all incoming messages to the server
 
-        if (event.getAuthor().isBot() || !message.startsWith(PREFIX)) { return; }
+        if (event.getAuthor().isBot() || !message.startsWith(PREFIX)) {
+            return;
+        }
 
         String[] arguments = message.split(" ");
-        String name = arguments[0].substring(PREFIX.length()).toLowerCase(); // cut out prefix; "r!help" becomes "help"
+        String name = arguments[0].substring(PREFIX.length()).toLowerCase();
         Command cmd = commands.get(name);
 
-        if (cmd == null) {
-            event.getChannel().sendMessage("Unknown command. Type **\"r!help\"** to review available options.").queue();
-        } else {
+        if (cmd != null) {
             cmd.execute(event, arguments);
+        } else {
+            event.getChannel().sendMessage("Unknown command. Type **\"r!help\"** for commands.").queue();
         }
     }
 }

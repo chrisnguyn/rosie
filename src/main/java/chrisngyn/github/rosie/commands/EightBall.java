@@ -1,13 +1,10 @@
 package chrisngyn.github.rosie.commands;
 
 import chrisngyn.github.rosie.Command;
-
 import java.util.Random;
-
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 
-public class EightBall extends Command {
-    // https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
+public class EightBall extends Command {  // https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
     Random randNumGen = new Random();
     protected String documentation = "**r!8ball** [anything] - get a random Magic 8-Ball response!";
     private final String[] responses = { "It is certain.", "It is decidedly so.", "Without a doubt.", "Yes - definitely.", "You may rely on it.",
@@ -21,7 +18,7 @@ public class EightBall extends Command {
 
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
-        int index = randNumGen.nextInt(responses.length); // length 20; range chosen from 0 - 19
+        int index = randNumGen.nextInt(responses.length);
         event.getChannel().sendMessage("**" + responses[index] + "**").queue();
     }
 }
