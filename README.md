@@ -4,7 +4,7 @@ A [Discord](https://discord.com) bot with ~20 features that serves as a centrali
 Here's a short GIF demoing some of Rosie's features:
 <p align="center"><img src="https://github.com/chrisngyn/Rosie/blob/master/media/rosie.gif" width="80%"></p>
 
-## Commands List (last updated 08/12/2020)
+## Commands
 
 ### HELP
 + **r!ping** - tests to see if Rosie is up and running. Responds with "Pong!" if so.
@@ -67,3 +67,10 @@ Here's a short GIF demoing some of Rosie's features:
 3. `docker build -t rosiebot .`
 
 4. `docker-compose up -d`
+
+## Miscellaneous
+1. If you ever need to recompile the `.jar` file
+
+      `mvn package`
+      
+2. Two `.jar` files will be generated in the `target/` directory - rename the one with dependencies to `rosie.jar` and move it to the root directory
