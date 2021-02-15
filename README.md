@@ -1,7 +1,9 @@
-# Rosie
-A [Discord](https://discord.com) bot with ~20 features that serves as a centralized platform to perform many actions in one place, from retrieving Google search results to Reddit posts, no more flipping through 50 tabs and applications to do what you want!
+# Rosie <img src="https://github.com/chrisngyn/chrisngyn/blob/master/Hi.gif" width="40px">
+
+## About
+Rosie is a [Discord](https://discord.com) bot with ~20 features that serves as a centralized platform to perform many actions in one place - so long ago are the days where we had to open many Google Chrome tabs to do what we wanted.
     
-Here's a short GIF demoing some of Rosie's features:
+Here's a short demo some of Rosie's features:
 <p align="center"><img src="https://github.com/chrisngyn/Rosie/blob/master/media/rosie.gif" width="80%"></p>
 
 ## Commands
@@ -68,9 +70,18 @@ Here's a short GIF demoing some of Rosie's features:
 
 4. `docker-compose up -d`
 
+## Future Improvements / Roadmap
+1. Need to add a lot more error handling.
+
+2. More features (currently looking into incorporating a Google Calendar feature into the bot and playing audio).
+
+3. Cleaning up the codebase significantly - namely abstracting a lot of the code in various commands to helper functions / separate files, for example in the `ToDoList.java` command, having a separation of concern for the database connection logic.
+
 ## Miscellaneous
 1. If you ever need to recompile the `.jar` file
 
       `mvn package`
       
-2. Two `.jar` files will be generated in the `target/` directory - rename the one with dependencies to `rosie.jar` and move it to the root directory
+(Two `.jar` files will be generated in the `target/` directory - rename the one with dependencies to `rosie.jar` and move it to the root directory)
+
+2. Pull requests are always welcomed!
