@@ -8,7 +8,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class CommandsHandler extends ListenerAdapter {
     private final Map<String, Command> commands = new HashMap<>();
-    private final static String PREFIX = "r!";
+    private final static String PREFIX = "!";
 
     public CommandsHandler() { // create all instances of the commands and put into our commands mapping
         Help help = new Help();
