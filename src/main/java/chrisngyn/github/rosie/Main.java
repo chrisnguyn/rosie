@@ -8,7 +8,7 @@ public class Main {
         Dotenv env = Dotenv.load();
 
         try {
-            JDABuilder bot = JDABuilder.createDefault(env.get("DISCORD_TOKEN"));  // turn on bot + configure handler
+            JDABuilder bot = JDABuilder.createDefault(env.get("DISCORD_TOKEN")); // login with token + register listener
             bot.addEventListeners(new CommandsHandler());
             bot.build();
         } catch (Exception e) {

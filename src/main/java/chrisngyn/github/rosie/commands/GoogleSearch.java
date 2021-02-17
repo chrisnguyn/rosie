@@ -5,23 +5,26 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
+
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.json.*;
 
 public class GoogleSearch extends Command {
     Dotenv env = Dotenv.load();
-    protected String documentation = "**r!googlesearch** [query] - responds with top three Google search results for that query.";
+    protected String documentation = "**!search** [query] - responds with top three Google search results for that query.";
     private String error = "";
     private String[] credentials = new String[2];
 
     public GoogleSearch() {
-        super("googlesearch");
+        super("search");
+
         try {
             credentials[0] = env.get("GCSE_ENGINE_ID");
             credentials[1] = env.get("GCSE_API_KEY");
         } catch (Exception e) {
-            System.err.println(e + "\n Error trying to build GoogleSearch instance.");
+            System.err.println(e);
             this.error = "Error executing the Google Search command. Please contact the bot creator.";
         }
     }
@@ -33,8 +36,7 @@ public class GoogleSearch extends Command {
             return;
         }
 
-        String query = "";
-        for (int i = 1; i < args.length; i++) { query += "+" + args[i]; }  // structure query to account for spaces
+        String query = String.join("+", Arrays.copyOfRange(args, 1, args.length));
 
         try {
             sendGETRequest(event, query);

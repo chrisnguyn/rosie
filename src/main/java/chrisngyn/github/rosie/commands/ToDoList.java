@@ -3,6 +3,7 @@ package chrisngyn.github.rosie.commands;
 import chrisngyn.github.rosie.Command;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -10,10 +11,10 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class ToDoList extends Command {
     Dotenv env = Dotenv.load();
-    protected String documentation = "**r!todo add** - add an entry to your todo list.\n" +
-            "> **r!todo view** - view your current todo list.\n" +
-            "> **r!todo complete** [existing entry] - mark an entry as completed.\n" +
-            "> **r!todo remove** [existing entry] - delete an entry from your to do list.";
+    protected String documentation = "**!todo add** - add an entry to your todo list.\n" +
+            "> **!todo view** - view your current todo list.\n" +
+            "> **!todo complete** [existing entry] - mark an entry as completed.\n" +
+            "> **!todo remove** [existing entry] - delete an entry from your to do list.";
     private String error = "";
     private String url = "";
     private String user = "";
@@ -22,13 +23,14 @@ public class ToDoList extends Command {
 
     public ToDoList() {
         super("todo");
+
         try {
             this.url = env.get("MYSQL_URL");
             this.user = env.get("MYSQL_USER");
             this.password = env.get("MYSQL_PW");
             this.connection = createDBConnection();
         } catch (Exception e) {
-            System.err.println(e + "\n Error trying to build ToDoList instance.");
+            System.err.println(e);
             this.error = "Error executing todo command. Please contact bot creator.";
         }
     }
@@ -51,8 +53,7 @@ public class ToDoList extends Command {
 
         switch (args[1]) {
             case "add":
-                String addContent = "";
-                for (int i = 2; i < args.length; i++) { addContent += args[i] + " "; }
+                String addContent = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
 
                 if (todoAdd(addContent, userId, date, formatter) == 0) {
                     event.getChannel().sendMessage("Your entry has been added to your to do list!").queue();
@@ -75,8 +76,7 @@ public class ToDoList extends Command {
                 break;
 
             case "complete": // if you try to 'complete' something that doesn't exist it'll still give confirmation :(
-                String completeContent = "";
-                for (int i = 2; i < args.length; i++) { completeContent += args[i] + " "; }
+                String completeContent = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
 
                 if (todoComplete(completeContent, userId) == 0) {
                     event.getChannel().sendMessage("Your entry has been updated in your to do list!").queue();
@@ -87,8 +87,7 @@ public class ToDoList extends Command {
                 break;
 
             case "remove": // if you try to 'remove' something that doesn't exist it'll still give confirmation :(
-                String removeContent = "";
-                for (int i = 2; i < args.length; i++) { removeContent += args[i] + " "; }
+                String removeContent = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
 
                 if (todoRemove(removeContent, userId) == 0) {
                     event.getChannel().sendMessage("Your entry has been deleted in your to do list!").queue();

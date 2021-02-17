@@ -7,11 +7,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class RandomNumberGeneration extends Command {
     Random randNumGen = new Random();
-    protected String documentation = "**r!random coin** - flip a coin.\n" +
-            "> **r!random dice** - roll a die.\n" +
-            "> **r!random card** - draw a card.\n" +
-            "> **r!random choose** option1 | option2 | option3 | ... - choose an option.\n" +
-            "> **r!random between** [number1] [number2] - get a number in that range (inclusive).";
+    protected String documentation = "**!random coin** - flip a coin.\n" +
+            "> **!random dice** - roll a die.\n" +
+            "> **!random card** - draw a card.\n" +
+            "> **!random choose** option1 | option2 | option3 | ... - choose an option.\n" +
+            "> **!random between** [number1] [number2] - get a number in that range (inclusive).";
     private final String[] value = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"};
     private final String[] suit = {"Clubs", "Spades", "Hearts", "Diamonds"};
 
@@ -22,6 +22,7 @@ public class RandomNumberGeneration extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
         String result = "";
+
         switch (args[1].toLowerCase()) {
             case "coin":
                 int coin = randNumGen.nextInt(2);

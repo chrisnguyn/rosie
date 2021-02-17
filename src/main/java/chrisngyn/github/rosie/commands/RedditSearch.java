@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class RedditSearch extends Command {
     Dotenv env = Dotenv.load();
-    protected String documentation = "**r!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
+    protected String documentation = "**!reddit** [name of subreddit] - responds with top five current hottest posts of that Reddit.";
     private String error = "";
     private Credentials oauth;
     private UserAgent user;
@@ -25,12 +25,13 @@ public class RedditSearch extends Command {
 
     public RedditSearch() {
         super("reddit");
+
         try {
             this.oauth = Credentials.script(env.get("REDDIT_USER"), env.get("REDDIT_PW"), env.get("REDDIT_PUBLIC_KEY"), env.get("REDDIT_PRIVATE_KEY"));
             this.user = new UserAgent("bot", "Rosie", "1.0.0", "hemp3n");
             this.client = OAuthHelper.automatic(new OkHttpNetworkAdapter(user), oauth);
         } catch (Exception e) {
-            System.err.println(e + "\n Error trying to build Reddit instance.");
+            System.err.println(e);
             this.error = "Error executing the Reddit command. Please contact the bot creator.";
         }
     }
@@ -42,8 +43,7 @@ public class RedditSearch extends Command {
             return;
         }
 
-        List<Submission> posts = getRedditPosts(args[1]);
-        for (Submission post : posts) {
+        for (Submission post : getRedditPosts(args[1])) {
             String returnedPosts = "";
             returnedPosts += post.getTitle() + "\n" + "http://reddit.com" + post.getPermalink() + "\n";
             event.getChannel().sendMessage(returnedPosts).queue();
@@ -52,16 +52,16 @@ public class RedditSearch extends Command {
 
     public List<Submission> getRedditPosts(String subreddit) {
         DefaultPaginator<Submission> paginator = client.subreddit(subreddit).posts()
-                .limit(3)
-                .sorting(SubredditSort.HOT)
-                .timePeriod(TimePeriod.DAY)
-                .build();
+                                                                            .limit(3)
+                                                                            .sorting(SubredditSort.HOT)
+                                                                            .timePeriod(TimePeriod.DAY)
+                                                                            .build();
         Listing<Submission> topMostPopular = paginator.next();
         return topMostPopular.getChildren();
     }
 }
 
-// more docs: https://mattbdean.gitbooks.io/jraw/pagination.html
+// https://mattbdean.gitbooks.io/jraw/pagination.html
 // getTitle - title of post
 // getPermalink - link to the post. Need to append it to "htttp://reddit.com" first if you want it to appear as a hyperlink in Discord
 // getSelfText - the self text in the post, if it exists. Otherwise null. Can use "isSelfPost" to see if it's a text only post
