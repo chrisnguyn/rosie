@@ -4,7 +4,7 @@ import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Help extends Command {
-    protected String documentation = "**r!help** - if you want to know about me and all the things I can do!";
+    protected String documentation = "**!help** - if you want to know about me and all the things I can do!";
     Ping ping = new Ping();
     BotInvite botInvite = new BotInvite();
     ServerInvite serverInvite = new ServerInvite();
@@ -24,8 +24,7 @@ public class Help extends Command {
     @Override
     public void execute(GuildMessageReceivedEvent event, String[] args) {
         String messageOne =
-                "Hello and thank you for using me; I am a personal assistant Discord bot that aims to improve your quality of life.\n\n" +
-                "**FEATURES LIST - LAST UPDATED ON AUGUST 11TH, 2020**\n\n" +
+                "**FEATURES LIST**\n\n" +
                 "**HELP**\n"                        +
                 "> " + this.documentation           + "\n" +
                 "> " + ping.documentation           + "\n" +

@@ -8,8 +8,8 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class Reminder extends Command {
-    protected String documentation = "**r!remindme** [number] [s, seconds, m, minutes, h, hours] [reminder] - set a reminder; Rosie will send you a direct message reminding you when time is up.";
-    String base = "Hello - you wanted me to remind you of this: **";
+    protected String documentation = "**!remindme** [number] [s, seconds, m, minutes, h, hours] [reminder] - set a reminder; Rosie will send you a direct message reminding you when time is up.";
+    private String base = "Hello - you wanted me to remind you of this: **";
 
     public Reminder() {
         super("remindme");

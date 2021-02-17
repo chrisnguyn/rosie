@@ -4,7 +4,7 @@ import chrisngyn.github.rosie.Command;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 public class ServerInvite extends Command {
-    protected String documentation = "**r!serverinvite** - generate an invitation link to this server that expires in 10 minutes.";
+    protected String documentation = "**!serverinvite** - generate an invitation link to this server that expires in 10 minutes.";
 
     public ServerInvite() {
         super("serverinvite");
