@@ -55,7 +55,7 @@ Here's a short demo some of Rosie's features:
     `REDDIT_PUBLIC_KEY=replace_me`  
     `REDDIT_PRIVATE_KEY=replace_me`  
       
-    [Get your Google Custom Search keys](https://developers.google.com/custom-search/v1/introduction)  
+    [Get your Google Custom Search Engine (CSE) keys](https://developers.google.com/custom-search/v1/introduction)  
     `GCSE_ENGINE_ID=replace_me`  
     `GCSE_API_KEY=replace_me`  
       
